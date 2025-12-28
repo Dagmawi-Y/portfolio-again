@@ -1,7 +1,7 @@
 <script>
   import "../app.css";
-  import VerticalNav from "$lib/components/VerticalNav.svelte";
-  import ThemeToggle from "$lib/components/ThemeToggle.svelte";
+  import FloatingDock from "$lib/components/FloatingDock.svelte";
+  import Grain from "$lib/components/Grain.svelte";
   import { isDark } from "$lib/stores/theme";
 </script>
 
@@ -36,8 +36,9 @@
     {/if}
   </div>
 
-  <VerticalNav />
-  <ThemeToggle />
+  <Grain />
+
+  <FloatingDock />
 
   <main class="content-area">
     <slot />
@@ -52,8 +53,8 @@
     color: var(--text-primary);
   }
 
+  /* No offset needed for floating dock */
   .content-area {
-    margin-left: 80px; /* Offset for Vertical Nav */
     position: relative;
     z-index: 1;
     min-height: 100vh;
@@ -117,16 +118,16 @@
   .app-layout.dark {
     --text-primary: #f1f5f9;
     --text-secondary: #94a3b8;
-    --surface-1: rgba(30, 41, 59, 0.5);
-    --surface-2: rgba(51, 65, 85, 0.5);
+    --surface-1: rgba(30, 41, 59, 0.6);
+    --surface-2: rgba(51, 65, 85, 0.4);
     --accent-1: #38bdf8;
   }
 
   .app-layout:not(.dark) {
     --text-primary: #1e293b;
     --text-secondary: #64748b;
-    --surface-1: rgba(255, 255, 255, 0.6);
-    --surface-2: rgba(255, 255, 255, 0.8);
+    --surface-1: rgba(255, 255, 255, 0.85);
+    --surface-2: rgba(255, 255, 255, 0.5);
     --accent-1: #0ea5e9;
   }
 </style>

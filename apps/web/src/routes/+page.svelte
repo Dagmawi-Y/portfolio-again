@@ -1,6 +1,8 @@
 <script lang="ts">
   import Hero from "$lib/components/Hero.svelte";
   import ProjectCard from "$lib/components/ProjectCard.svelte";
+  import Career from "$lib/components/Career.svelte";
+  import OpenSource from "$lib/components/OpenSource.svelte";
   import Interests from "$lib/components/Interests.svelte";
   import { siteConfig } from "$lib/config";
 
@@ -68,6 +70,10 @@
       </div>
     </div>
   </section>
+
+  <Career />
+
+  <OpenSource />
 
   <div id="lab">
     <Interests />

@@ -18,28 +18,6 @@
 <div class="blog-container">
   <header class="blog-header">
     <Motion
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.4 }}
-      let:motion
-    >
-      <a href="/" class="back-home" use:motion>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg
-        >
-        Home
-      </a>
-    </Motion>
-
-    <Motion
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1, duration: 0.5 }}

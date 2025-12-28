@@ -103,4 +103,83 @@ export const siteConfig = {
       size: "normal"
     }
   ],
+  experience: [
+    {
+      role: "Senior Frontend Engineer",
+      company: "TechCorp",
+      period: "2022 - Present",
+      description: "Spearheading the migration to SvelteKit. Reduced load times by 40% and improved dev velocity.",
+    },
+    {
+      role: "Software Engineer",
+      company: "StartUp Inc",
+      period: "2020 - 2022",
+      description: "Built the MVP from scratch. Wore many hats, from DevOps to UI design. Shipped fast, broke things, fixed them faster.",
+    },
+  ],
+  education: [
+    {
+      degree: "BSc in Computer Science",
+      school: "University of Technology",
+      year: "2020",
+    },
+  ],
+  certificates: [
+    {
+      name: "AWS Certified Solutions Architect",
+      issuer: "Amazon Web Services",
+      year: "2023",
+      link: "#",
+    },
+    {
+      name: "Google UX Design Professional Certificate",
+      issuer: "Coursera",
+      year: "2021",
+      link: "#",
+    },
+  ],
+  openSource: {
+    contributions: [
+      {
+        project: "sveltejs/svelte",
+        description: "Fixed a hydration edge case in list rendering.",
+        link: "#",
+        status: "Merged",
+      },
+      {
+        project: "vitejs/vite",
+        description: "Improved HMR performance for large dependency graphs.",
+        link: "#",
+        status: "Merged",
+      },
+    ],
+    libraries: [
+      {
+        name: "svelte-motion",
+        description: "A spring animation library for Svelte, inspired by Framer Motion.",
+        stats: "1.2k stars",
+        link: "#",
+      },
+      {
+        name: "tiny-store",
+        description: "Zero-dependency state management for vanilla JS.",
+        stats: "300 stars",
+        link: "#",
+      },
+    ],
+  },
+  experiments: [
+    {
+      name: "Shader Playground",
+      description: "Interactive WebGL shader editor built with Three.js.",
+      link: "#",
+      tags: ["WebGL", "GLSL"],
+    },
+    {
+      name: "Generative Art Bot",
+      description: "Twitter bot that generates daily abstract art using canvas API.",
+      link: "#",
+      tags: ["Node.js", "Canvas"],
+    },
+  ],
 };
