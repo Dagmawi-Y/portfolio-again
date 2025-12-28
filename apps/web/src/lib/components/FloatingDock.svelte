@@ -13,6 +13,7 @@
     ArrowLeft,
   } from "lucide-svelte";
   import { isDark } from "$lib/stores/theme";
+  import { triggerChat } from "$lib/stores/chat";
   import { playSwitch, playPop } from "$lib/utils/sound";
 
   const navItems = [
@@ -56,9 +57,13 @@
     lastScrollY = currentScrollY;
   }
 
-  function handleNavClick(id: string) {
+  function handleNavClick(e: MouseEvent, id: string) {
     activeId = id;
     playPop();
+    if (id === "contact") {
+      e.preventDefault();
+      triggerChat();
+    }
   }
 
   onMount(() => {
@@ -79,7 +84,7 @@
         <a
           href="/"
           class="dock-item back-btn"
-          on:click={() => handleNavClick("back")}
+          on:click={(e) => handleNavClick(e, "back")}
           aria-label="Go Back"
         >
           <div class="icon-wrapper">
@@ -96,7 +101,7 @@
           class="dock-item"
           class:active={activeId === item.id ||
             ($page.url.pathname === item.href && item.href !== "/")}
-          on:click={() => handleNavClick(item.id)}
+          on:click={(e) => handleNavClick(e, item.id)}
           aria-label={item.label}
         >
           <div class="icon-wrapper">

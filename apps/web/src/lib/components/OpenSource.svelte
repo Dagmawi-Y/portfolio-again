@@ -84,7 +84,7 @@
 <style>
   .os-wrapper {
     padding: 0 2rem 8rem;
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
   }
 

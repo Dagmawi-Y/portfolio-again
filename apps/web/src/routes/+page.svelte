@@ -42,7 +42,7 @@
       </div>
 
       <!-- Simple pill filters -->
-      <div class="filters">
+      <!-- <div class="filters">
         {#each categories as cat}
           <button
             class="filter-pill"
@@ -52,7 +52,7 @@
             {cat}
           </button>
         {/each}
-      </div>
+      </div> -->
 
       <div class="projects-container">
         {#each projectTypes as type}
