@@ -2,7 +2,13 @@
   import "../app.css";
   import FloatingDock from "$lib/components/FloatingDock.svelte";
   import Grain from "$lib/components/Grain.svelte";
+  import { dev } from "$app/environment";
   import { isDark } from "$lib/stores/theme";
+
+  if (dev) {
+    console.log("🚀 Svelte 5 App running in Dev Mode");
+    console.log("💡 Use Cmd+Shift+Click to inspect components");
+  }
 </script>
 
 <div class="app-layout" class:dark={$isDark}>

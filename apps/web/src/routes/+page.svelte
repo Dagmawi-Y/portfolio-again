@@ -91,7 +91,7 @@
   }
 
   .section-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .section-title {
@@ -147,33 +147,106 @@
   .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 6rem;
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  /* Projects Spine */
+  .projects-container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -2rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--accent-1) 0%,
+      var(--surface-2) 20%,
+      var(--surface-2) 80%,
+      transparent 100%
+    );
+    opacity: 0.5;
   }
 
   .type-group {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0.5rem;
+    position: relative;
   }
 
   .type-label {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
-    opacity: 0.5;
+    letter-spacing: 0.2em;
+    color: var(--accent-1);
     margin: 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--surface-2);
-    width: fit-content;
-    min-width: 60px;
+    position: relative;
+    padding-bottom: 0;
+  }
+
+  /* Type Junction Dot */
+  .type-label::before {
+    content: "";
+    position: absolute;
+    left: -2rem;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: all 0.3s ease;
+  }
+
+  /* Type Branch Line */
+  .type-label::after {
+    content: "";
+    position: absolute;
+    left: -2rem;
+    top: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent-1);
+    opacity: 0.3;
+    z-index: 4;
+  }
+
+  .type-group:hover .type-label::before {
+    background: var(--accent-1);
+    box-shadow: 0 0 15px var(--accent-1);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
   .projects-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0rem;
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  /* List vertical guide */
+  .projects-list::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--surface-2);
+    opacity: 0.3;
+  }
+
+  .type-group:hover .projects-list::before {
+    background: var(--accent-1);
+    opacity: 0.6;
+    box-shadow: 0 0 10px var(--accent-1);
   }
 
   .project-wrapper {
@@ -201,7 +274,12 @@
     }
 
     .projects-container {
-      gap: 3rem;
+      gap: 4rem;
+      padding-left: 1.5rem;
+    }
+
+    .projects-list {
+      padding-left: 1.25rem;
     }
   }
 </style>

@@ -1,71 +1,87 @@
 <script>
   import { siteConfig } from "$lib/config";
   import { Briefcase, GraduationCap, Award } from "lucide-svelte";
+  import CareerItem from "./CareerItem.svelte";
 </script>
 
 <div class="career-wrapper">
   <div class="career-header">
     <h2 class="career-title">Career</h2>
-    <div class="divider"></div>
   </div>
 
   <div class="vertical-layout">
     <!-- EXPERIENCE -->
     <section class="section-group">
-      <div class="section-badge">
+      <div class="section-label">
         <Briefcase size={16} />
-        <span>Experience</span>
+        <span>Professional Experience</span>
       </div>
 
-      <div class="timeline">
-        {#each siteConfig.experience as job}
-          <div class="timeline-item">
-            <div class="timeline-line"></div>
-            <div class="timeline-dot"></div>
-            <div class="job-content">
-              <span class="period">{job.period}</span>
-              <h3 class="role">{job.role}</h3>
-              <span class="company">at {job.company}</span>
-              <p class="desc">{job.description}</p>
-            </div>
-          </div>
-        {/each}
+      <div class="section-content">
+        <div class="item-list">
+          {#each siteConfig.experience as job, i}
+            <CareerItem
+              title={job.role}
+              subtitle={job.company}
+              period={job.period}
+              description={job.description}
+              logo={job.logo}
+              link={job.link}
+              showDivider={i < siteConfig.experience.length - 1}
+            />
+          {/each}
+        </div>
       </div>
     </section>
 
     <!-- EDUCATION -->
     <section class="section-group">
-      <div class="section-badge">
+      <div class="section-label">
         <GraduationCap size={16} />
         <span>Education</span>
       </div>
 
-      <div class="simple-list">
-        {#each siteConfig.education as edu}
-          <div class="simple-item">
-            <span class="year">{edu.year}</span>
-            <h3 class="main-text">{edu.degree}</h3>
-            <span class="sub-text">{edu.school}</span>
-          </div>
-        {/each}
+      <div class="section-content">
+        <div class="item-list">
+          {#each siteConfig.education as edu, i}
+            <CareerItem
+              title={edu.degree}
+              subtitle={edu.school}
+              period={edu.year}
+              description={edu.description}
+              logo={edu.logo}
+              link={edu.link}
+              showDivider={i < siteConfig.education.length - 1}
+            />
+          {/each}
+        </div>
       </div>
     </section>
 
     <!-- CERTIFICATES -->
     <section class="section-group">
-      <div class="section-badge">
+      <div class="section-label">
         <Award size={16} />
         <span>Certificates</span>
       </div>
 
-      <div class="simple-list">
-        {#each siteConfig.certificates as cert}
-          <a href={cert.link} class="simple-item link-item" target="_blank">
-            <span class="year">{cert.year}</span>
-            <h3 class="main-text">{cert.name}</h3>
-            <span class="sub-text">{cert.issuer}</span>
-          </a>
-        {/each}
+      <div class="section-content">
+        <div class="certificate-gallery">
+          {#each siteConfig.certificates as cert}
+            <a href={cert.link} class="cert-card" target="_blank">
+              <div class="cert-image-container">
+                <img src={cert.image} alt={cert.name} class="cert-image" />
+                <div class="cert-overlay">
+                  <div class="cert-info">
+                    <span class="cert-year">{cert.year}</span>
+                    <h3 class="cert-name">{cert.name}</h3>
+                    <span class="cert-issuer">{cert.issuer}</span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          {/each}
+        </div>
       </div>
     </section>
   </div>
@@ -73,7 +89,7 @@
 
 <style>
   .career-wrapper {
-    padding: 0 2rem 8rem;
+    padding: 2rem 2rem 8rem;
     max-width: 800px;
     margin: 0 auto;
   }
@@ -81,156 +97,251 @@
   .career-header {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .career-title {
-    font-size: 4rem;
-    font-weight: 900;
+    font-size: 2.5rem;
+    font-weight: 800;
     margin: 0;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.04em;
     color: var(--text-primary);
-    line-height: 1;
+    line-height: 1.2;
   }
 
-  .divider {
-    flex: 1;
-    height: 1px;
-    background: var(--surface-2);
-  }
-
-  /* Single Column Stack */
   .vertical-layout {
     display: flex;
     flex-direction: column;
-    gap: 6rem; /* Good spacing between major blocks */
+    gap: 4rem;
+    position: relative;
+    padding-left: 2rem;
+    margin-left: 0.15rem;
   }
 
-  .section-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    background: var(--surface-1);
-    border: 1px solid var(--surface-2);
-    border-radius: 100px;
-    margin-bottom: 3rem;
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  /* Main Spine */
+  .vertical-layout::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1.5rem;
+    bottom: 5rem;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--accent-1) 0%,
+      var(--surface-2) 20%,
+      var(--surface-2) 80%,
+      transparent 100%
+    );
+    opacity: 0.5;
   }
 
-  /* TIMELINE */
-  .timeline {
+  .section-group {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
-    padding-left: 0.5rem; /* Slight indentation */
-  }
-
-  .timeline-item {
     position: relative;
-    padding-left: 2.5rem;
   }
 
-  .timeline-line {
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-1);
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  /* Sub-Category Dot */
+  .section-label::before {
+    content: "";
     position: absolute;
-    left: 3px;
-    top: 0.5rem;
-    bottom: -4.5rem;
-    width: 2px;
-    background: var(--surface-2);
+    left: -2rem;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--bg-color);
+    border: 2px solid var(--accent-1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    transition: all 0.3s ease;
   }
 
-  .timeline-item:last-child .timeline-line {
+  /* Branch Line */
+  .section-label::after {
+    content: "";
+    position: absolute;
+    left: -2rem;
+    top: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent-1);
+    opacity: 0.3;
+    z-index: 4;
+  }
+
+  .section-group:hover .section-label::before {
+    background: var(--accent-1);
+    box-shadow: 0 0 15px var(--accent-1);
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  .section-content {
+    margin-left: 0rem;
+    padding-left: 2rem;
+    position: relative;
+    transition: border-color 0.3s ease;
+  }
+
+  .section-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--surface-2);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+  }
+
+  .section-group:hover .section-content::before {
+    background: var(--accent-1);
+    opacity: 0.6;
+    box-shadow: 0 0 10px var(--accent-1);
+  }
+
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .certificate-gallery {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 2.5rem 0 2.5rem;
+    margin-right: -2rem; /* Bleed out slightly */
+    mask-image: linear-gradient(to right, black 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 94%, transparent 100%);
+  }
+
+  .certificate-gallery::after {
+    content: "";
+    flex: 0 0 4rem; /* Extra space at the end */
+  }
+
+  .certificate-gallery::-webkit-scrollbar {
     display: none;
   }
 
-  .timeline-dot {
-    position: absolute;
-    left: 0;
-    top: 0.6rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent-1);
-    box-shadow: 0 0 0 4px var(--bg-color); /* Creates gap effect */
-  }
-
-  .period {
-    font-size: 0.8rem;
-    font-family: inherit;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .role {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin: 0 0 0.25rem 0;
-  }
-
-  .company {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
-
-  .desc {
-    margin-top: 1rem;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    max-width: 650px;
-  }
-
-  /* Simple Lists */
-  .simple-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-  }
-
-  .simple-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .cert-card {
+    flex: 0 0 320px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
     text-decoration: none;
-    transition: transform 0.2s;
+    background: var(--surface-1);
+    border: 1px solid var(--surface-2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
-  .link-item:hover {
-    transform: translateX(4px);
+  .cert-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--accent-1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 
-  .link-item:hover .main-text {
+  .cert-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .cert-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.7);
+    transition: all 0.5s ease;
+  }
+
+  .cert-card:hover .cert-image {
+    filter: grayscale(0%) brightness(0.9);
+    transform: scale(1.1);
+  }
+
+  .cert-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.8));
+    transition: all 0.3s ease;
+  }
+
+  .cert-card:hover .cert-overlay {
+    background: linear-gradient(
+      transparent 20%,
+      rgba(var(--accent-1-rgb), 0.9)
+    );
+  }
+
+  .cert-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cert-year {
+    font-size: 0.7rem;
+    font-weight: 800;
     color: var(--accent-1);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.25rem;
   }
 
-  .year {
+  .cert-card:hover .cert-year {
+    color: white;
+  }
+
+  .cert-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: white;
+    margin: 0 0 0.2rem 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .cert-issuer {
     font-size: 0.8rem;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 600;
-    opacity: 0.6;
   }
 
-  .main-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-  }
-
-  .sub-text {
-    font-size: 1rem;
-    color: var(--text-secondary);
+  @media (max-width: 640px) {
+    .section-content {
+      padding-left: 1.5rem;
+      margin-left: 0.2rem;
+    }
+    .career-title {
+      font-size: 2.25rem;
+    }
+    .cert-card {
+      flex: 0 0 240px;
+      height: 160px;
+    }
   }
 </style>

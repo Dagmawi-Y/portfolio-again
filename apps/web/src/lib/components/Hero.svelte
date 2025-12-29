@@ -328,7 +328,7 @@
                               <h2 class="masthead-name">Dagmawi</h2>
                               <div class="masthead-status-row">
                                 <span class="status-dot"></span>
-                                <p class="masthead-status">Avail for Hire</p>
+                                <p class="masthead-status">Online</p>
                               </div>
                             </div>
                             <button
@@ -444,7 +444,7 @@
             <div class="drawer-chat-header">
               <div class="header-chat-info">
                 <span class="chat-name">Dagmawi</span>
-                <span class="chat-status">Avail for Hire</span>
+                <span class="chat-status">Online</span>
               </div>
             </div>
 

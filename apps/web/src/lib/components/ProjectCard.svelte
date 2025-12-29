@@ -6,162 +6,204 @@
   export let index = 0;
 </script>
 
-<Motion
-  initial={{ opacity: 0, y: 15 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, delay: index * 0.05 }}
-  let:motion
->
-  <a href={project.link} class="card" use:motion>
-    <div class="image-wrapper">
-      <img src={project.image} alt={project.title} loading="lazy" />
-      <div class="stats-badge">{project.stats}</div>
-    </div>
-
-    <div class="details">
-      <div class="header">
-        <div class="main-meta">
-          <span class="category">{project.category}</span>
-          <span class="dot">·</span>
-          <span class="type">{project.type}</span>
+<div class="project-row-wrapper">
+  <Motion
+    whileHover={{ x: 0 }}
+    transition={{ type: "spring", stiffness: 200, damping: 20 }}
+    let:motion
+  >
+    <a
+      href={project.link}
+      class="project-row"
+      target="_blank"
+      rel="noopener noreferrer"
+      use:motion
+    >
+      <div class="project-header">
+        <div class="image-preview">
+          <img src={project.image} alt={project.title} class="project-img" />
+          <div class="stats-badge">{project.stats}</div>
         </div>
-        <ArrowUpRight size={18} class="arrow" />
-      </div>
 
-      <h3 class="title">{project.title}</h3>
-      <p class="description">{project.description}</p>
+        <div class="content-group">
+          <div class="meta-label">
+            <span class="category">{project.category}</span>
+            <span class="dot">·</span>
+            <span class="type">{project.type}</span>
+          </div>
 
-      <div class="tags">
-        {#each project.tags as tag}
-          <span class="tag">{tag}</span>
-        {/each}
+          <h3 class="title">{project.title}</h3>
+
+          <div class="project-body">
+            <p class="description">{project.description}</p>
+          </div>
+
+          <div class="footer-meta">
+            <div class="tags">
+              {#each project.tags as tag}
+                <span class="tag">{tag}</span>
+              {/each}
+            </div>
+
+            <div class="link-affordance">
+              <ArrowUpRight size={18} />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </a>
-</Motion>
+    </a>
+  </Motion>
+</div>
 
 <style>
-  .card {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 2rem;
-    text-decoration: none;
-    padding: 1.5rem;
-    background: var(--surface-1);
-    border: 1px solid var(--surface-2);
-    border-radius: var(--radius-md);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  .project-row-wrapper {
     position: relative;
-    overflow: hidden;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--surface-2);
+    transition: all 0.3s ease;
   }
 
-  .card:hover {
-    border-color: var(--text-secondary);
-    background: var(--surface-2);
-    transform: translateY(-2px);
+  .project-row-wrapper:hover {
+    border-bottom-color: var(--accent-1);
   }
 
-  .image-wrapper {
+  .project-row {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .image-preview {
     position: relative;
     width: 100%;
-    height: 160px;
-    border-radius: 8px;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
     overflow: hidden;
     background: var(--surface-2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .image-wrapper img {
+  .project-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(100%) brightness(0.85);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .card:hover .image-wrapper img {
-    transform: scale(1.08);
+  .project-row:hover .image-preview {
+    transform: scale(1.04) rotate(-1deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-row:hover .project-img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
   }
 
   .stats-badge {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
     color: white;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.65rem;
-    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.9;
+    z-index: 2;
   }
 
-  .details {
+  .content-group {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-right: 1rem;
+    gap: 0.75rem;
   }
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.75rem;
-  }
-
-  .main-meta {
+  .meta-label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .category {
-    color: var(--accent-2);
+    letter-spacing: 0.15em;
+    color: var(--accent-1);
+    opacity: 0.8;
   }
 
   .dot {
-    opacity: 0.2;
+    opacity: 0.3;
+    color: var(--text-primary);
   }
 
   .type {
     color: var(--text-secondary);
-    opacity: 0.8;
-  }
-
-  .arrow {
-    color: var(--text-secondary);
-    opacity: 0;
-    transform: translate(-10px, 10px);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .card:hover .arrow {
-    opacity: 1;
-    transform: translate(0, 0);
-    color: var(--text-primary);
   }
 
   .title {
-    font-size: 1.5rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: 900;
     color: var(--text-primary);
-    margin: 0 0 0.5rem 0;
-    letter-spacing: -0.02em;
+    margin: 0;
+    letter-spacing: -0.04em;
     line-height: 1.1;
+    transition: all 0.3s ease;
+  }
+
+  .project-row:hover .title {
+    color: var(--accent-1);
+    transform: translateX(4px);
+  }
+
+  .project-body {
+    max-width: 500px;
+    margin-top: 0.5rem;
+    padding-left: 0.25rem;
+    border-left: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .project-row:hover .project-body {
+    border-left-color: var(--accent-1);
+    padding-left: 1rem;
   }
 
   .description {
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.6;
     color: var(--text-secondary);
-    line-height: 1.5;
-    margin: 0 0 1.25rem 0;
-    max-width: 90%;
+    margin: 0;
+    transition: all 0.3s ease;
+  }
+
+  .project-row:hover .description {
+    color: var(--text-primary);
+  }
+
+  .footer-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--surface-2);
   }
 
   .tags {
@@ -172,35 +214,53 @@
 
   .tag {
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-secondary);
-    background: rgba(128, 128, 128, 0.1);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: var(--surface-1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--surface-2);
+    transition: all 0.2s ease;
   }
 
-  @media (max-width: 768px) {
-    .card {
+  .project-row:hover .tag {
+    border-color: var(--accent-1);
+    color: var(--text-primary);
+  }
+
+  .link-affordance {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface-1);
+    border: 1px solid var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .project-row:hover .link-affordance {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    border-color: var(--text-primary);
+    transform: rotate(0deg) scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 850px) {
+    .project-header {
       grid-template-columns: 1fr;
-      gap: 1.25rem;
-      padding: 1rem;
+      gap: 2rem;
     }
 
-    .image-wrapper {
-      height: 180px;
-    }
-
-    .details {
-      padding-right: 0;
+    .image-preview {
+      aspect-ratio: 16 / 9;
     }
 
     .title {
-      font-size: 1.25rem;
-    }
-
-    .arrow {
-      display: none;
+      font-size: 2rem;
     }
   }
 </style>
