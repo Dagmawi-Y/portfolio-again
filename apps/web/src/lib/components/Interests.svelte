@@ -1,4 +1,5 @@
 <script>
+  import StickyHeader from "./StickyHeader.svelte";
   const books = [
     {
       title: "A Philosophy of Software Design",
@@ -130,10 +131,10 @@
   ];
 </script>
 
-<div class="interests-wrapper">
+<div class="interests-wrapper" style="position: relative;">
   <!-- BOOKS SECTION -->
   <section class="interest-section">
-    <h2 class="section-label">Reading</h2>
+    <StickyHeader id="lab" title="Reading" compact />
     <div class="bento books-bento">
       {#each books as book}
         <div class="bento-item" class:featured={book.featured}>
@@ -155,7 +156,7 @@
 
   <!-- MUSIC SECTION -->
   <section class="interest-section">
-    <h2 class="section-label">Listening</h2>
+    <StickyHeader title="Listening" compact />
     <div class="bento music-bento">
       {#each music as item}
         <div class="bento-item" class:featured={item.featured}>
@@ -178,7 +179,7 @@
 
   <!-- TALKS SECTION -->
   <section class="interest-section">
-    <h2 class="section-label">Speaking</h2>
+    <StickyHeader title="Speaking" compact />
     <div class="bento talks-bento">
       {#each talks as talk}
         <div class="bento-item" class:featured={talk.featured}>
@@ -201,7 +202,7 @@
 
   <!-- WATCHING SECTION -->
   <section class="interest-section">
-    <h2 class="section-label">Watching</h2>
+    <StickyHeader title="Watching" compact />
     <div class="bento watch-bento">
       {#each watching as item}
         <div

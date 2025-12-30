@@ -29,7 +29,7 @@
     <div class="info-row">
       <span class="info-key">Bio</span>
       <p class="info-val">
-        Building performant, product-led mobile & web experiences from scratch.
+        Building performant, product-led mobile & web experiences.
       </p>
     </div>
     <div class="info-row">

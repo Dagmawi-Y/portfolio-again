@@ -1,6 +1,7 @@
 <script lang="ts">
   import Hero from "$lib/components/Hero.svelte";
   import ProjectCard from "$lib/components/ProjectCard.svelte";
+  import StickyHeader from "$lib/components/StickyHeader.svelte";
   import Career from "$lib/components/Career.svelte";
   import OpenSource from "$lib/components/OpenSource.svelte";
   import Interests from "$lib/components/Interests.svelte";
@@ -34,12 +35,13 @@
 <main>
   <Hero />
 
-  <section id="work" class="section">
+  <section id="work" class="section" style="position: relative;">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-subtitle">Selected works and experiments</p>
-      </div>
+      <StickyHeader
+        id="work"
+        title="Projects"
+        subtitle="Selected works and experiments"
+      />
 
       <!-- Simple pill filters -->
       <!-- <div class="filters">

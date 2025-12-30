@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { chatTrigger } from "$lib/stores/chat";
+  import { stickyObserver } from "$lib/actions/sticky";
+  import { activeSection } from "$lib/stores/ui";
 
   // Hero Components
   import HeroContent from "./hero/HeroContent.svelte";
@@ -53,6 +55,7 @@
   ];
 
   function focusChat() {
+    activeSection.set("contact");
     if (typeof window !== "undefined" && window.innerWidth < 960) {
       isDrawerOpen = true;
       return;
@@ -101,7 +104,7 @@
         ...messages,
         {
           id: Date.now(),
-          text: "Got it! I've received your message. I'll get back to you ASAP. Let's build something great.",
+          text: "Got it! I've received your message. I'll get back to you ASAP",
           sender: "me",
           time: new Date().toLocaleTimeString([], {
             hour: "2-digit",
@@ -135,7 +138,17 @@
       },
     },
   };
+
+  function handleStuck({ isStuck }: { isStuck: boolean }) {
+    if (isStuck) activeSection.set("home");
+  }
 </script>
+
+<div
+  class="hero-sentinel"
+  style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; visibility: hidden; pointer-events: none;"
+  use:stickyObserver={{ onStuck: handleStuck }}
+></div>
 
 <section class="hero">
   <div class="container">
@@ -170,6 +183,7 @@
             bind:chatInput
             {isGlowing}
             onSend={sendMessage}
+            on:focus={() => activeSection.set("contact")}
           />
         {/if}
       </IPhone15Pro>

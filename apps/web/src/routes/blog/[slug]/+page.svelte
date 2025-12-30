@@ -151,9 +151,28 @@
   }
 
   .reader-page {
+    /* Reading-Optimized Palette with Bluish Touch */
+    --bg-color: #f4f7fa; /* Soft Cool White */
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --surface-1: #e2e8f0;
+    --surface-2: #cbd5e1;
+
     background: var(--bg-color);
     min-height: 100vh;
     padding-top: 4rem;
+    color: var(--text-primary);
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+  }
+
+  :global(.dark) .reader-page {
+    --bg-color: #0f141d; /* Deep Midnight Navy-Gray */
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --surface-1: #1e293b;
+    --surface-2: #334155;
   }
 
   .reader-container {

@@ -1,5 +1,6 @@
 <script>
   import { siteConfig } from "$lib/config";
+  import StickyHeader from "./StickyHeader.svelte";
   import {
     GitPullRequest,
     Package,
@@ -17,11 +18,8 @@
   } from "lucide-svelte";
 </script>
 
-<div class="os-wrapper">
-  <!-- SECTION HEADER - Aligned with Global Grid -->
-  <div class="os-header">
-    <h2 class="os-title">Code</h2>
-  </div>
+<div class="os-wrapper" style="position: relative;">
+  <StickyHeader id="work" title="Code" />
 
   <div class="vertical-layout">
     <!-- Main spine shared with Career/Projects -->

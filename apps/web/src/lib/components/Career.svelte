@@ -2,12 +2,11 @@
   import { siteConfig } from "$lib/config";
   import { Briefcase, GraduationCap, Award } from "lucide-svelte";
   import CareerItem from "./CareerItem.svelte";
+  import StickyHeader from "./StickyHeader.svelte";
 </script>
 
-<div class="career-wrapper">
-  <div class="career-header">
-    <h2 class="career-title">Career</h2>
-  </div>
+<div class="career-wrapper" style="position: relative;">
+  <StickyHeader id="work" title="Career" />
 
   <div class="vertical-layout">
     <!-- EXPERIENCE -->

@@ -15,6 +15,7 @@
     placeholder="Message..."
     on:keydown={(e) =>
       e.key === "Enter" && !e.shiftKey && (e.preventDefault(), onSend())}
+    on:focus
   ></textarea>
   <button class="send-btn" on:click={onSend} disabled={!message.trim()}>
     <Send size={18} />
