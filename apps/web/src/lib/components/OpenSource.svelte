@@ -179,7 +179,7 @@
   .main-spine {
     position: absolute;
     left: 0;
-    top: -2rem;
+    top: 0.5rem; /* Aligns with the center of the first marker */
     bottom: 0;
     width: 1px;
     background: linear-gradient(

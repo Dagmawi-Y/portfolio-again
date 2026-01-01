@@ -48,7 +48,7 @@
       />
 
       <!-- Simple pill filters -->
-      <div class="filters">
+      <!-- <div class="filters">
         {#each categories as cat}
           <button
             class="filter-pill"
@@ -58,7 +58,7 @@
             {cat}
           </button>
         {/each}
-      </div>
+      </div> -->
 
       <div class="projects-container">
         {#each projectTypes as type}
@@ -163,7 +163,7 @@
     content: "";
     position: absolute;
     left: 0;
-    top: -2rem;
+    top: 0.5rem; /* Aligns with the center of the first marker */
     bottom: 0;
     width: 1px;
     background: linear-gradient(

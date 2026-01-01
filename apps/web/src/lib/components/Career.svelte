@@ -178,7 +178,7 @@
     content: "";
     position: absolute;
     left: 0;
-    top: -1.5rem;
+    top: 0.5rem; /* Aligns with the center of the first marker */
     bottom: 5rem;
     width: 1px;
     background: linear-gradient(
