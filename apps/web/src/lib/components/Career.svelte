@@ -125,13 +125,11 @@
             <a href={cert.link} class="cert-card" target="_blank">
               <div class="cert-image-container">
                 <img src={cert.image} alt={cert.name} class="cert-image" />
-                <div class="cert-overlay">
-                  <div class="cert-info">
-                    <span class="cert-year">{cert.year}</span>
-                    <h3 class="cert-name">{cert.name}</h3>
-                    <span class="cert-issuer">{cert.issuer}</span>
-                  </div>
-                </div>
+              </div>
+              <div class="cert-info-footer">
+                <span class="cert-year">{cert.year}</span>
+                <h3 class="cert-name">{cert.name}</h3>
+                <span class="cert-issuer">{cert.issuer}</span>
               </div>
             </a>
           {/each}
@@ -297,63 +295,51 @@
   }
 
   .cert-card {
-    flex: 0 0 320px;
-    height: 200px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     background: var(--surface-1);
     border: 1px solid var(--surface-2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .cert-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-8px);
     border-color: var(--accent-1);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 
   .cert-image-container {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 16/10;
     position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--surface-2);
+    background: #ffffff; /* Certificates often have white backgrounds */
   }
 
   .cert-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%) brightness(0.7);
-    transition: all 0.5s ease;
+    object-fit: contain;
+    padding: 0;
+    transform: scale(1.1); /* Slight zoom by default */
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .cert-card:hover .cert-image {
-    filter: grayscale(0%) brightness(0.9);
-    transform: scale(1.1);
+    transform: scale(1.2); /* Deeper zoom on hover */
   }
 
-  .cert-overlay {
-    position: absolute;
-    inset: 0;
-    padding: 1.25rem;
+  .cert-info-footer {
+    padding: 1rem 1.25rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.8));
-    transition: all 0.3s ease;
-  }
-
-  .cert-card:hover .cert-overlay {
-    background: linear-gradient(
-      transparent 20%,
-      rgba(var(--accent-1-rgb), 0.9)
-    );
-  }
-
-  .cert-info {
-    position: relative;
-    z-index: 2;
+    gap: 0.25rem;
+    background: var(--surface-1);
   }
 
   .cert-year {
@@ -362,27 +348,26 @@
     color: var(--accent-1);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 0.25rem;
-  }
-
-  .cert-card:hover .cert-year {
-    color: white;
   }
 
   .cert-name {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 800;
-    color: white;
-    margin: 0 0 0.2rem 0;
-    line-height: 1.2;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.3;
     letter-spacing: -0.01em;
   }
 
   .cert-issuer {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
     font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .cert-card:hover .cert-name {
+    color: var(--accent-1);
   }
 
   @media (max-width: 640px) {

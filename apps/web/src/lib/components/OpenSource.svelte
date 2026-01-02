@@ -2,19 +2,14 @@
   import { siteConfig } from "$lib/config";
   import StickyHeader from "./StickyHeader.svelte";
   import {
-    GitPullRequest,
     Package,
     FlaskConical,
     ArrowUpRight,
     Terminal,
-    Code2,
     Command,
     Star,
     GitBranch,
-    Clock,
     Box,
-    ChevronRight,
-    Folder,
   } from "lucide-svelte";
 </script>
 

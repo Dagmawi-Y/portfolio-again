@@ -1,7 +1,7 @@
 ---
-title: "The Art of Doing Less"
+title: "One String is Enough"
 date: "2026-01-01"
-description: "Why we overbuild, and how to stop."
+description: "A lesson from a single-stringed instrument on building with soul."
 category: "Engineering"
 ---
 
@@ -9,59 +9,68 @@ category: "Engineering"
   import { Motion } from 'svelte-motion';
 </script>
 
-# The Art of Doing Less
+# One String is Enough
 
-I've noticed a pattern in how we build things lately. We start with a simple problem and somehow end up with a hundred dependencies and five different architectural layers before the first user even signs up.
+If you’ve ever walked through a street in Addis at night, you might have heard it. A raspy, haunting sound cutting through the city noise. It’s the Masenqo.
 
-We’re avoiding the hard work of making things small.
+It’s just a box, some goat skin, and a single string made of horsehair. One string. That’s it.
 
-![The serenity of focus](https://images.unsplash.com/photo-1573403092240-26095e118918?q=80&w=1080&auto=format&fit=crop)
+Yet, in the hands of a master, that one string does everything. It laughs, it cries, it tells stories of kings and heartbreak. It doesn’t need a piano’s eighty-eight keys or a synthesizer’s million patches. It just needs the soul of the person playing it.
 
-### One String is Enough
+I think about this every time I open my terminal.
 
-There’s a traditional instrument here called the Masenqo. It’s got one string. That’s it. It looks primitive, but in the hands of someone who knows what they’re doing, it can carry an entire room. It doesn't need a full orchestra to move people because the focus is entirely on the soul of that one note.
+![The Masenqo Soul](https://i.ibb.co/Cpgc5Y6P/image.png)
 
-In music, specifically Ethio-jazz, everything is built on a five-note scale. It’s limited, but those constraints are exactly what make it a universe. You don't need twelve notes to express complex emotions. You just need to know what to do with the five you have.
+### The Noise of the Orchestra
 
-**Engineering is exactly like this.** If your logic can’t survive on "one string," adding more frameworks or microservices won't fix it. It just makes the noise louder.
+In tech, we’ve become obsessed with the orchestra. We start a small project and before we even understand the problem, we’ve provisioned a Kubernetes cluster, picked three different state management libraries, and integrated a complex auth provider. We’re so busy tuning the instruments that we forget to play the music.
 
-### The "Good Enough" Principle
+Why? Maybe because being simple is exposing.
 
-Real engineering isn't about the most expensive tools. It's about solving the problem with exactly what you have on the table. If a piece of wire works as well as a sensor, use the wire.
+When you have only one string, you can’t hide behind complexity. Every note has to be right. When your code is lean, your logic has to be sound. You can’t "abstract" away a bad idea if you don’t have layers to bury it in. Complexity is often just a high-end blanket for our own uncertainty.
 
-Over-engineering is usually just fancy procrastination. We build for "scale" that might never come because we're afraid to face the reality of the product today.
+### The "Egg walking" Discipline
+
+There’s a specific kind of patience in the Masenqo. You don’t force the horsehair; you find its resonance.
+
+In engineering, we’ve lost that patience. We try to make the egg run a marathon before it even hatches. We build for "scale" when we have zero users. We optimize for edge cases that haven't happened yet. It’s a form of structural anxiety—trying to solve the problems of Year 5 on Day 1.
+
+A master starts with the resonance. They find the foundational logic that actually works, and they hold it. They don't add the second string until the first one can no longer carry the story.
+
+### The Constraint Lemma
+
+Constraints aren't limits; they're the source of the soul.
+
+Mulatu built Ethio-jazz on a five-note scale. That limitation forced him to find depth where others only saw shallow water. In my terminal, if I tell myself I _cannot_ use that massive framework today, I’m forced to actually look at the data structure. I’m forced to think about the user’s memory, their battery, their time.
 
 <Motion initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} client:visible>
 
-  <div style="padding: 2rem; border: 1px dashed var(--accent-2); border-radius: 16px; margin: 2rem 0; text-align: center; background: var(--surface-1);">
-    <h4 style="margin-top: 0; color: var(--accent-2);">The Constraint Lemma</h4>
-    <p style="font-size: 0.9rem; margin-bottom: 0;">If it works without a library, don't install one. If it works without a server, don't provision one.</p>
+  <div style="padding: 2.5rem; border: 1px dashed var(--accent-2); border-radius: 16px; margin: 2.5rem 0; text-align: left; background: var(--surface-1); line-height: 1.6;">
+    <h4 style="margin-top: 0; color: var(--accent-2); font-size: 1.1rem;">The Engineering Resonator</h4>
+    <p style="font-size: 0.95rem; margin-bottom: 0; font-weight: 500;">
+      "If the architecture doesn't have a soul on a single thread, a distributed system will only make it a louder mess."
+    </p>
   </div>
 </Motion>
 
-### Stop Building for Ghosts
+### Raw over Wrapped
 
-"What if we hit 10 million users?"
-You don't have ten users yet. Stop building for ghosts. Build for the one person using it right now.
+We’ve learned to wrap our work in layers of professional-looking boilerplate. It feels safe. It feels like "industry standards." But usually, it just makes the work heavy. It makes it harder to move, harder to pivot, and harder to care about.
 
-Simplicity isn't about being lazy. It’s about being incredibly focused. It's about having the discipline to say "no" to the shiny things that don't actually move the needle.
+Real engineering—the kind that survives the hype cycles—is built like that instrument. It’s lean, it’s intentional, and every single dependency is a weight you choose to carry, not a default you inherit.
 
-![Coffee ceremony - the art of patience](https://images.unsplash.com/photo-1630861413071-a424a4d6d155?q=80&w=1080&auto=format&fit=crop)
+#### Rules for the High-Tension String:
 
-### Slow and Steady
+1. **Defer the "Best Practice"**: Until you understand why it's a practice for _your_ specific problem, it's just someone else's opinion.
+2. **Respect the Horsehair**: Master the standard library. Master the basic protocols. You’d be surprised how much you can do with just one string if you know how to pull it.
+3. **Keep it "Neet"**: If a piece of code doesn't contribute to the core resonance of the product, it's just friction. Delete it.
 
-There's an old saying about things moving slowly until the egg eventually walks on its own feet.
+Next time you’re about to `npm install` your way out of a moment of creative block, stop. Listen to the silence. Find the single string.
 
-It means starting small. You start with the egg. You don't start with the farm. You focus on the one thing that needs to happen right now.
-
-#### My Rules:
-
-1. **Don't build it** until it's a problem.
-2. **Don't import it** if you can write it yourself in ten minutes.
-3. **If it needs a manual**, it's broken.
+Maybe that’s all the music you really need.
 
 ---
 
-Keep it simple. Keep it real.
+_Keep it simple. Keep it real._
 
 - D.

@@ -34,12 +34,11 @@
     </div>
     <div class="info-row">
       <span class="info-key">Username</span>
-      <p class="info-val link">@dagmawi_dev</p>
+      <p class="info-val link">@dag_mawi</p>
     </div>
     <div class="info-row">
       <span class="info-key">Recent Thoughts</span>
-      <a href="/blog/simplicity" class="info-val link"
-        >The Art of Doing Less →</a
+      <a href="/blog/simplicity" class="info-val link">One String is Enough →</a
       >
     </div>
   </div>
@@ -83,21 +82,16 @@
   }
   .profile-masthead {
     position: relative;
-    width: calc(100% + 32px);
-    margin: 0 -16px 0;
+    width: 100%;
+    margin: 0;
     height: 220px;
     background: var(--phone-surface);
   }
   .masthead-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top;
-    filter: grayscale(100%);
-    transition: filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .profile-masthead:hover .masthead-img {
-    filter: grayscale(0%);
   }
   .masthead-overlay {
     position: absolute;
