@@ -41,17 +41,6 @@
 
 <div class="reader-page">
   <div class="reader-container">
-    <aside class="reader-sidebar-left">
-      <div class="sidebar-sticky">
-        <div class="post-info">
-          <div class="author-pill">
-            <img src="/me.png" alt="Dagmawi" />
-            <span>Dagmawi</span>
-          </div>
-        </div>
-      </div>
-    </aside>
-
     <article class="post-article">
       <header class="post-header">
         <div class="post-meta">
@@ -69,9 +58,7 @@
     </article>
 
     <aside class="reader-sidebar-right">
-      <div class="toc-sticky-wrapper">
-        <TableOfContents />
-      </div>
+      <TableOfContents />
     </aside>
   </div>
 </div>
@@ -118,53 +105,19 @@
   }
 
   .reader-container {
-    max-width: 1400px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 180px 1fr 220px;
-    gap: 3rem;
+    grid-template-columns: 1fr 200px;
+    gap: 4rem;
     align-items: start;
   }
 
-  .sidebar-sticky,
-  .toc-sticky-wrapper {
+  .reader-sidebar-right {
     position: sticky;
     top: 6rem;
     height: fit-content;
-    max-height: calc(100vh - 8rem);
-    overflow-y: auto;
-    scrollbar-width: none;
-  }
-
-  .sidebar-sticky::-webkit-scrollbar,
-  .toc-sticky-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-
-  .sidebar-sticky {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .author-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  .author-pill img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--surface-2);
-  }
-
-  .author-pill span {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-primary);
   }
 
   .post-article {
@@ -327,20 +280,6 @@
     color: var(--accent-1);
     opacity: 0.15;
     font-family: serif;
-  }
-
-  .toc-sticky-wrapper {
-    padding-right: 0.75rem;
-  }
-
-  @media (max-width: 1200px) {
-    .reader-container {
-      grid-template-columns: 1fr 220px;
-      padding: 0 3rem;
-    }
-    .reader-sidebar-left {
-      display: none;
-    }
   }
 
   @media (max-width: 960px) {

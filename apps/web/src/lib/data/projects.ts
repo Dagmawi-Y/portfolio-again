@@ -46,7 +46,7 @@ export const projects: Project[] = [
     size: "normal"
   },
   {
-    title: "Kidopia",
+    title: "Edopia",
     description: "AI-powered gamified learning platform for kids in Africa. Currently founding and leading development.",
     tags: ["Founder", "EdTech", "AI", "Mobile"],
     category: "Work",

@@ -3,14 +3,14 @@ import type { Experience } from "./schemas";
 export const experience: Experience[] = [
   {
     role: "Founder & CEO",
-    company: "Kidopia",
+    company: "Edopia",
     period: "Oct 2025 - Present",
     description: [
       "Building the digital space our kids deserve.",
       "Focused on creating an AI-powered gamified learning platform for children in Africa."
     ],
-    logo: "/kidopia-logo.png",
-    link: "https://kidopia.app",
+    logo: "/edopia-logo.png",
+    link: "https://edopia.app",
   },
   {
     role: "Full Stack Engineer",

@@ -25,9 +25,9 @@
     <p>
       I've worked on products reaching millions of users — streaming apps,
       banking super-apps, remittance platforms moving $1M+ daily. I founded
-      <strong>Kidopia</strong>, an AI-powered learning platform for kids in
-      Africa, and <strong>Techtonic Tribe</strong>, a university tech community
-      that grew from a club into a movement.
+      <strong>Edopia</strong>, an AI-driven learning platform for Africa, and
+      <strong>Techtonic Tribe</strong>, a university tech community that grew
+      from a club into a movement.
     </p>
 
     <p>
@@ -52,7 +52,7 @@
       </div>
       <div class="detail-row">
         <span class="detail-label">Currently</span>
-        <span class="detail-value">Building Kidopia</span>
+        <span class="detail-value">Building Edopia</span>
       </div>
       <div class="detail-row">
         <span class="detail-label">Available for</span>

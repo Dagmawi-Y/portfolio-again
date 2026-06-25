@@ -14,14 +14,16 @@
     <section class="section">
       <h2 class="section-title">Building</h2>
       <p>
-        I'm founding and leading development at <strong>Kidopia</strong> — an
-        AI-powered gamified learning platform for children in Africa. We're
-        building the digital space kids deserve: safe, engaging, and educational.
+        I'm founding and leading development at <strong>Edopia</strong> — we're
+        building the future of learning for Africa. Every child deserves
+        access to a world-class education, regardless of where they live. We
+        combine AI, personalized learning, and locally relevant content to
+        create engaging experiences that adapt to each student.
       </p>
       <p>
-        On the side, I'm experimenting with in-browser AI inference and
-        CRDT-based local-first sync. The goal: apps that work offline, respect
-        privacy, and don't need a server farm to run.
+        Not just another education platform — an ecosystem that empowers
+        students to learn better, teachers to teach smarter, and parents to
+        participate in their children's journey.
       </p>
     </section>
 
@@ -39,7 +41,7 @@
       <p>
         How to make African tech ecosystems self-sustaining. Not just building
         products, but building the people and communities that build the
-        products. Techtonic Tribe was the first step — Kidopia is the next.
+        products. Techtonic Tribe was the first step — Edopia is the next.
       </p>
     </section>
 
