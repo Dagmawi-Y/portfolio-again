@@ -12,4 +12,4 @@ trigger: always_on
 - Always check / handle errors (try/catch or validations) in async or external code.
 - Use library / framework best practices (project conventions) over custom hacks.
 - Don’t generate unused imports or dead code.
-- Use tailwind classes for styling in React Native components, avoid inline styles unless really necessary.
+- Use tailwind classes for styling anywhere possible.
