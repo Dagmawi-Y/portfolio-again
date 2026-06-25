@@ -1,7 +1,9 @@
-<svelte:head>
-  <title>About — Dagmawi Yohannes</title>
-  <meta name="description" content="How I got here and what I care about." />
-</svelte:head>
+<script lang="ts">
+  import SEO from "$lib/components/SEO.svelte";
+</script>
+
+<SEO title="About" description="How I got here and what I care about." />
+
 
 <div class="page">
   <header class="page-header">
@@ -11,19 +13,18 @@
 
   <article class="content">
     <p>
-      I am Dagmawi, a software engineer in Addis Ababa, Ethiopia. I build mobile
-      applications that people enjoy using.
+      I am Dagmawi Yohannes, a software engineer and developer based in Addis Ababa, Ethiopia. As an Ethiopian developer, I build mobile and web applications that people enjoy using.
     </p>
 
     <p>
       I started writing code to build tools that did not exist. Today, I focus
-      on performance, precise design, and responsiveness.
+      on performance, precise design, and responsiveness, striving to be the best developer in Ethiopia by crafting elegant, high-impact solutions.
     </p>
 
     <p>
       I have built banking super-apps, streaming systems, and remittance
       platforms moving more than a million dollars daily. I also founded
-      <strong>Edopia</strong>, an adaptive learning platform, and
+      <strong>Edopia</strong>, an adaptive learning platform, worked on projects with <strong>Adot Technologies</strong>, and founded
       <strong>Techtonic Tribe</strong>, a university tech community.
     </p>
 

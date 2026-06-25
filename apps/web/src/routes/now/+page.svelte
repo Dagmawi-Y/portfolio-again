@@ -1,7 +1,9 @@
-<svelte:head>
-  <title>Now — Dagmawi Yohannes</title>
-  <meta name="description" content="What I'm focused on right now." />
-</svelte:head>
+<script lang="ts">
+  import SEO from "$lib/components/SEO.svelte";
+</script>
+
+<SEO title="Now" description="What I'm focused on right now." />
+
 
 <div class="page">
   <header class="page-header">

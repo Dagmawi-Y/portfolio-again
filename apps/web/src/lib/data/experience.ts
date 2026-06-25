@@ -10,7 +10,7 @@ export const experience: Experience[] = [
       "Focused on creating an AI-powered gamified learning platform for children in Africa."
     ],
     logo: "/edopia-logo.png",
-    link: "https://edopia.app",
+    link: "https://getedopia.com",
   },
   {
     role: "Full Stack Engineer",

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import TableOfContents from "$lib/components/TableOfContents.svelte";
+  import SEO from "$lib/components/SEO.svelte";
 
   export let data;
 
@@ -29,11 +30,7 @@
   };
 </script>
 
-<svelte:head>
-  <title>{data.meta.title} — Brain Dump</title>
-  <meta name="description" content={data.meta.description} />
-  <meta name="author" content="Dagmawi" />
-</svelte:head>
+<SEO title={data.meta.title} description={data.meta.description} />
 
 <div class="progress-wrap">
   <div class="progress-bar" style="width: {scrollProgress}%"></div>

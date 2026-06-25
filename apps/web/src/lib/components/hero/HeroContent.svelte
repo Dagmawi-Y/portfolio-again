@@ -5,12 +5,12 @@
 <div class="content">
   <h1 class="name">Dagmawi Yohannes</h1>
 
-  <p class="role">Software engineer in Addis Ababa</p>
+  <p class="role">Software engineer in Addis Ababa, Ethiopia</p>
 
   <p class="bio">
     I build mobile apps with React Native. Currently founding
-    <a href="https://edopia.app">Edopia</a> — an AI-driven learning
-    platform for Africa.
+    <a href="https://getedopia.com">Edopia</a> — an AI-driven learning platform for
+    Africa.
   </p>
 
   <SocialLinks />

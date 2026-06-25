@@ -1,15 +1,13 @@
 <script lang="ts">
   import Hero from "$lib/components/Hero.svelte";
+  import SEO from "$lib/components/SEO.svelte";
   import { siteConfig } from "$lib/config";
   import { ArrowUpRight } from "lucide-svelte";
 
   const featured = siteConfig.projects.slice(0, 5);
 </script>
 
-<svelte:head>
-  <title>{siteConfig.name} — {siteConfig.title}</title>
-  <meta name="description" content={siteConfig.description} />
-</svelte:head>
+<SEO />
 
 <main>
   <Hero />

@@ -1,4 +1,6 @@
 <script lang="ts">
+  import SEO from "$lib/components/SEO.svelte";
+
   export let data;
 
   const formatDate = (dateString: string) => {
@@ -10,9 +12,8 @@
   };
 </script>
 
-<svelte:head>
-  <title>Brain Dump — Notes & Thoughts</title>
-</svelte:head>
+<SEO title="Brain Dump — Notes & Thoughts" description="Occasional notes on code, engineering, and life by Dagmawi Yohannes." />
+
 
 <div class="blog-container">
   <header class="blog-header">

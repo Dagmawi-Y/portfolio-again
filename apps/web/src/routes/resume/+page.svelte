@@ -1,6 +1,7 @@
 <script lang="ts">
   import { siteConfig } from "$lib/config";
   import { ArrowUpRight } from "lucide-svelte";
+  import SEO from "$lib/components/SEO.svelte";
 
   interface Role {
     role: string;
@@ -43,6 +44,8 @@
     []
   );
 </script>
+
+<SEO title="Resume" description="Professional experience, education, certificates, and projects of Dagmawi Yohannes." />
 
 <div class="work-page">
   <header class="page-header">
