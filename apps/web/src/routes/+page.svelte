@@ -18,7 +18,7 @@
     <div class="container">
       <div class="section-header">
         <h2 class="section-title">Selected Work</h2>
-        <a href="/work" class="view-all">View all <ArrowUpRight size={14} /></a>
+        <a href="/resume" class="view-all">View all <ArrowUpRight size={14} /></a>
       </div>
 
       <div class="project-list">

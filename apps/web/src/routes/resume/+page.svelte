@@ -46,7 +46,7 @@
 
 <div class="work-page">
   <header class="page-header">
-    <h1 class="title">Work</h1>
+    <h1 class="title">Resume</h1>
     <p class="subtitle">Projects, experience, education, and code.</p>
   </header>
 

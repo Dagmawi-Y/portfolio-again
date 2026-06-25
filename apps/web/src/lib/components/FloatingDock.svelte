@@ -18,7 +18,7 @@
 
   const navItems = [
     { id: "home", icon: Home, label: "Home", href: "/" },
-    { id: "work", icon: Briefcase, label: "Work", href: "/work" },
+    { id: "resume", icon: Briefcase, label: "Resume", href: "/resume" },
     { id: "about", icon: User, label: "About", href: "/about" },
     { id: "now", icon: Clock, label: "Now", href: "/now" },
     { id: "notes", icon: NotebookPen, label: "Notes", href: "/blog" },
@@ -36,7 +36,7 @@
     if (path.startsWith("/blog")) return "notes";
     if (path === "/about") return "about";
     if (path === "/now") return "now";
-    if (path === "/work") return "work";
+    if (path === "/resume") return "resume";
     if (path === "/") {
       if (y < 100) return "home";
       return $activeSection;
