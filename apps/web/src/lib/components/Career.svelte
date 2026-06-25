@@ -17,7 +17,6 @@
     roles: Role[];
   }
 
-  // Group experiences by company
   const groupedExperience = siteConfig.experience.reduce<ExperienceGroup[]>(
     (acc, current) => {
       const existingGroup = acc.find((g) => g.company === current.company);
@@ -47,15 +46,14 @@
   );
 </script>
 
-<div class="career-wrapper" style="position: relative;">
-  <StickyHeader id="work" title="Career" />
+<div class="career-wrapper">
+  <StickyHeader id="career" title="Career" />
 
   <div class="vertical-layout">
-    <!-- EXPERIENCE -->
     <section class="section-group">
       <div class="section-label">
-        <Briefcase size={16} />
-        <span>Professional Experience</span>
+        <Briefcase size={14} />
+        <span>Experience</span>
       </div>
 
       <div class="section-content">
@@ -88,10 +86,9 @@
       </div>
     </section>
 
-    <!-- EDUCATION -->
     <section class="section-group">
       <div class="section-label">
-        <GraduationCap size={16} />
+        <GraduationCap size={14} />
         <span>Education</span>
       </div>
 
@@ -112,10 +109,9 @@
       </div>
     </section>
 
-    <!-- CERTIFICATES -->
     <section class="section-group">
       <div class="section-label">
-        <Award size={16} />
+        <Award size={14} />
         <span>Certificates</span>
       </div>
 
@@ -146,22 +142,6 @@
     margin: 0 auto;
   }
 
-  .career-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .career-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 0;
-    letter-spacing: -0.04em;
-    color: var(--text-primary);
-    line-height: 1.2;
-  }
-
   .vertical-layout {
     display: flex;
     flex-direction: column;
@@ -171,12 +151,11 @@
     margin-left: 0.15rem;
   }
 
-  /* Main Spine */
   .vertical-layout::after {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.5rem; /* Aligns with the center of the first marker */
+    top: 0.5rem;
     bottom: 5rem;
     width: 1px;
     background: linear-gradient(
@@ -186,7 +165,7 @@
       var(--surface-2) 80%,
       transparent 100%
     );
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .section-group {
@@ -201,15 +180,13 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem;
     color: var(--accent-1);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     position: relative;
-    transition: all 0.3s ease;
   }
 
-  /* Sub-Category Dot */
   .section-label::before {
     content: "";
     position: absolute;
@@ -222,10 +199,8 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    transition: all 0.3s ease;
   }
 
-  /* Branch Line */
   .section-label::after {
     content: "";
     position: absolute;
@@ -238,17 +213,10 @@
     z-index: 4;
   }
 
-  .section-group:hover .section-label::before {
-    background: var(--accent-1);
-    box-shadow: 0 0 15px var(--accent-1);
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-
   .section-content {
-    margin-left: 0rem;
+    margin-left: 0;
     padding-left: 2rem;
     position: relative;
-    transition: border-color 0.3s ease;
   }
 
   .section-content::before {
@@ -260,13 +228,6 @@
     width: 1px;
     background: var(--surface-2);
     opacity: 0.3;
-    transition: all 0.3s ease;
-  }
-
-  .section-group:hover .section-content::before {
-    background: var(--accent-1);
-    opacity: 0.6;
-    box-shadow: 0 0 10px var(--accent-1);
   }
 
   .item-list {
@@ -277,17 +238,11 @@
 
   .certificate-gallery {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     overflow-x: auto;
-    padding: 2.5rem 0 2.5rem;
-    margin-right: -2rem; /* Bleed out slightly */
+    padding: 2rem 0;
     mask-image: linear-gradient(to right, black 94%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, black 94%, transparent 100%);
-  }
-
-  .certificate-gallery::after {
-    content: "";
-    flex: 0 0 4rem; /* Extra space at the end */
   }
 
   .certificate-gallery::-webkit-scrollbar {
@@ -295,55 +250,45 @@
   }
 
   .cert-card {
-    flex: 0 0 300px;
+    flex: 0 0 260px;
     display: flex;
     flex-direction: column;
     text-decoration: none;
     background: var(--surface-1);
     border: 1px solid var(--surface-2);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.2s;
   }
 
   .cert-card:hover {
-    transform: translateY(-8px);
     border-color: var(--accent-1);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 
   .cert-image-container {
     width: 100%;
-    aspect-ratio: 16/10;
-    position: relative;
+    aspect-ratio: 16 / 10;
     overflow: hidden;
     border-bottom: 1px solid var(--surface-2);
-    background: #ffffff; /* Certificates often have white backgrounds */
+    background: #fff;
   }
 
   .cert-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 0;
-    transform: scale(1.1); /* Slight zoom by default */
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .cert-card:hover .cert-image {
-    transform: scale(1.2); /* Deeper zoom on hover */
   }
 
   .cert-info-footer {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.15rem;
     background: var(--surface-1);
   }
 
   .cert-year {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 800;
     color: var(--accent-1);
     text-transform: uppercase;
@@ -351,23 +296,17 @@
   }
 
   .cert-name {
-    font-size: 1.05rem;
-    font-weight: 800;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
     line-height: 1.3;
-    letter-spacing: -0.01em;
   }
 
   .cert-issuer {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
     font-weight: 600;
-    opacity: 0.8;
-  }
-
-  .cert-card:hover .cert-name {
-    color: var(--accent-1);
   }
 
   @media (max-width: 640px) {
@@ -375,12 +314,9 @@
       padding-left: 1.5rem;
       margin-left: 0.2rem;
     }
-    .career-title {
-      font-size: 2.25rem;
-    }
+
     .cert-card {
-      flex: 0 0 240px;
-      height: 160px;
+      flex: 0 0 220px;
     }
   }
 </style>

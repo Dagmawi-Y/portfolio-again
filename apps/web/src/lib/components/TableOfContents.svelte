@@ -1,17 +1,16 @@
 <script lang="ts">
   import { onMount } from "svelte";
 
-  export let containerSelector = ".markdown-body";
+  let { containerSelector = ".markdown-body" }: { containerSelector?: string } = $props();
 
   interface Heading {
     id: string;
     text: string;
     level: number;
-    parentIndex: number | null;
   }
 
-  let headings: Heading[] = [];
-  let activeId = "";
+  let headings: Heading[] = $state([]);
+  let activeId: string = $state("");
 
   const extractHeadings = () => {
     const container = document.querySelector(containerSelector);
@@ -34,21 +33,7 @@
           index;
       }
 
-      let parentIndex = null;
-      for (let i = index - 1; i >= 0; i--) {
-        const prevLevel = parseInt(rawHeadings[i].tagName.substring(1));
-        if (prevLevel < level) {
-          parentIndex = i;
-          break;
-        }
-      }
-
-      return {
-        id: el.id,
-        text,
-        level,
-        parentIndex,
-      };
+      return { id: el.id, text, level };
     });
 
     updateActiveHeading();
@@ -80,18 +65,14 @@
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const top = element.getBoundingClientRect().top + window.scrollY - 100;
+      const top = element.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
 
   onMount(() => {
-    const timer = setTimeout(() => {
-      extractHeadings();
-    }, 200);
-
+    const timer = setTimeout(extractHeadings, 200);
     window.addEventListener("scroll", updateActiveHeading, { passive: true });
-
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", updateActiveHeading);
@@ -109,16 +90,11 @@
             class="toc-item level-{heading.level}"
             class:active={activeId === heading.id}
           >
-            <!-- Continuous Indentation Guides -->
-            {#each Array(heading.level - 2) as _, i}
-              <div class="guide-line" style="left: {i * 1.25}rem"></div>
-            {/each}
-
             <button
               type="button"
-              on:click={() => scrollToHeading(heading.id)}
+              onclick={() => scrollToHeading(heading.id)}
               class="toc-button"
-              style="padding-left: {(heading.level - 2) * 1.25 + 0.75}rem"
+              style="padding-left: {(heading.level - 2) * 1.1 + 0.5}rem"
             >
               <span class="active-indicator"></span>
               <span class="text">{heading.text}</span>
@@ -132,17 +108,17 @@
 
 <style>
   .toc-nav {
-    padding: 0 1rem;
+    padding: 0 0.75rem;
     user-select: none;
   }
 
   .toc-header {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     opacity: 0.4;
   }
 
@@ -165,16 +141,6 @@
     align-items: center;
   }
 
-  .guide-line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: var(--surface-2);
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
   .toc-button {
     all: unset;
     cursor: pointer;
@@ -182,34 +148,32 @@
     display: flex;
     align-items: center;
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     line-height: 1.5;
-    padding: 0.5rem 0;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.4rem 0;
+    transition: color 0.15s;
     position: relative;
   }
 
   .active-indicator {
     width: 2px;
     height: 0;
-    background: var(--accent-2);
+    background: var(--accent-1);
     position: absolute;
     left: -0.5px;
     top: 50%;
     transform: translateY(-50%);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: height 0.25s ease;
     border-radius: 4px;
     z-index: 5;
   }
 
   .toc-item.active .active-indicator {
-    height: 70%;
-    box-shadow: 0 0 10px var(--accent-2);
+    height: 60%;
   }
 
   .toc-button:hover {
     color: var(--text-primary);
-    transform: translateX(2px);
   }
 
   .toc-item.active .text {
@@ -218,7 +182,7 @@
   }
 
   .text {
-    transition: all 0.2s ease;
+    transition: color 0.15s;
   }
 
   @media (max-width: 1200px) {

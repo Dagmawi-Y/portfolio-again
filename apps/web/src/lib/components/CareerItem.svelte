@@ -1,19 +1,27 @@
 <script lang="ts">
   import { ArrowUpRight } from "lucide-svelte";
 
-  export let title: string;
-  export let subtitle: string;
-  export let period: string | undefined = undefined;
-  export let description: string | string[] | undefined = undefined;
-  export let logo: string | undefined = undefined;
-  export let link: string = "#";
-  export let showDivider: boolean = false;
-  export let isGroup: boolean = false;
-  export let roles: Array<{
-    role: string;
-    period: string;
-    description: string | string[];
-  }> = [];
+  let {
+    title,
+    subtitle,
+    period = undefined,
+    description = undefined,
+    logo = undefined,
+    link = "#",
+    showDivider = false,
+    isGroup = false,
+    roles = [],
+  }: {
+    title: string;
+    subtitle: string;
+    period?: string;
+    description?: string | string[];
+    logo?: string;
+    link?: string;
+    showDivider?: boolean;
+    isGroup?: boolean;
+    roles?: Array<{ role: string; period: string; description: string | string[] }>;
+  } = $props();
 </script>
 
 <div class="item-row-wrapper" class:is-group={isGroup}>
@@ -29,17 +37,17 @@
           <div class="title-group">
             <h3 class="title">{title}</h3>
             <span class="subtitle-name">{subtitle}</span>
-            <span class="period">{period}</span>
+            {#if period}
+              <span class="period">{period}</span>
+            {/if}
           </div>
         </div>
 
-        <div class="meta-group">
-          {#if link && link !== "#"}
-            <div class="link-circle">
-              <ArrowUpRight size={14} />
-            </div>
-          {/if}
-        </div>
+        {#if link && link !== "#"}
+          <div class="link-circle">
+            <ArrowUpRight size={14} />
+          </div>
+        {/if}
       </div>
 
       {#if description}
@@ -59,18 +67,15 @@
   {:else}
     <div class="group-container">
       <div class="group-header">
-        <div class="group-logo-container">
-          <img src={logo} alt={title} class="group-logo" />
-        </div>
+        {#if logo}
+          <div class="group-logo-container">
+            <img src={logo} alt={title} class="group-logo" />
+          </div>
+        {/if}
         <div class="group-info">
           <h3 class="group-company-name">{title}</h3>
           {#if link && link !== "#"}
-            <a
-              href={link}
-              class="group-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={link} class="group-link" target="_blank" rel="noopener noreferrer">
               Visit Website <ArrowUpRight size={12} />
             </a>
           {/if}
@@ -117,187 +122,128 @@
 <style>
   .item-row-wrapper {
     position: relative;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
   }
 
-  /* Structural Indicator Dot (PKM Style) */
   .item-row-wrapper::before {
     content: "";
     position: absolute;
     left: -2rem;
-    top: 1.4rem;
-    width: 6px;
-    height: 6px;
+    top: 1.2rem;
+    width: 5px;
+    height: 5px;
     background: var(--surface-2);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     opacity: 0.5;
-    transition: all 0.3s ease;
     z-index: 5;
+    transition: background 0.2s;
   }
 
   .item-row-wrapper:hover::before {
     background: var(--accent-1);
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.5);
-    box-shadow: 0 0 8px var(--accent-1);
   }
 
   .item-row {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.35rem;
     text-decoration: none;
     color: inherit;
-    position: relative;
-    padding-bottom: 0.25rem;
   }
 
   .item-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .header-main-group {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.75rem;
     flex: 1;
   }
 
   .title-group {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.15rem;
     flex: 1;
   }
 
   .title {
-    font-size: 1.4rem;
-    font-weight: 800;
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     line-height: 1.2;
-    transition: all 0.3s ease;
+    transition: color 0.2s;
   }
 
   .item-row:hover .title {
     color: var(--accent-1);
   }
 
-  .subtitle-info {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    width: fit-content;
-    transition: all 0.3s ease;
-  }
-
-  .item-row:hover .subtitle-info {
-    color: var(--text-primary);
-  }
-
   .logo-img {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     border-radius: 6px;
     background: #ffffff;
     object-fit: contain;
-    padding: 4px;
+    padding: 3px;
     border: 1px solid var(--surface-2);
-    transition: all 0.3s ease;
     flex-shrink: 0;
   }
 
-  .item-row:hover .logo-img {
-    transform: scale(1.15);
-  }
-
   .subtitle-name {
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 600;
     color: var(--text-primary);
-    opacity: 0.9;
-  }
-
-  .meta-group {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 1.8rem;
+    opacity: 0.85;
   }
 
   .period {
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-secondary);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
+    letter-spacing: 0.03em;
     opacity: 0.6;
-    transition: all 0.3s ease;
-  }
-
-  .item-row:hover .period {
-    opacity: 0.9;
   }
 
   .link-circle {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 1px solid var(--surface-2);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-secondary);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     opacity: 0;
-    transform: scale(0.8);
+    transition: opacity 0.2s;
+    flex-shrink: 0;
   }
 
   .item-row:hover .link-circle {
     opacity: 1;
-    transform: scale(1);
-    background: var(--text-primary);
-    color: var(--bg-color);
-    border-color: var(--text-primary);
   }
 
   .item-body {
-    max-width: 650px;
-    margin-top: 0.6rem;
+    max-width: 600px;
+    margin-top: 0.4rem;
     padding-left: 0.25rem;
-    border-left: 1px solid transparent;
-    transition: all 0.3s ease;
-  }
-
-  .item-row:hover .item-body {
-    border-left-color: var(--accent-1);
-    padding-left: 0.75rem;
   }
 
   .description-text {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.6;
     color: var(--text-secondary);
     margin: 0;
-    transition: all 0.3s ease;
-  }
-
-  .item-row:hover .description-text {
-    color: var(--text-primary);
-  }
-
-  :global(.dark) .description-text {
-    color: var(--text-secondary);
-  }
-
-  :global(.dark) .item-row:hover .description-text {
-    color: var(--text-primary);
   }
 
   .item-divider {
@@ -306,30 +252,26 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--surface-2);
+    opacity: 0.5;
   }
 
-  :global(.dark) .item-divider {
-    background: rgba(255, 255, 255, 0.15);
-  }
-
-  /* Group Styles (LinkedIn Style) */
   .group-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    padding: 0.5rem 0;
+    gap: 1rem;
+    padding: 0.25rem 0;
   }
 
   .group-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .group-logo-container {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     background: #ffffff;
     border-radius: 6px;
     border: 1px solid var(--surface-2);
@@ -338,7 +280,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    padding: 3px;
   }
 
   .group-logo {
@@ -350,42 +292,41 @@
   .group-info {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.1rem;
   }
 
   .group-company-name {
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin: 0;
     letter-spacing: -0.02em;
   }
 
   .group-link {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     color: var(--accent-1);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.2rem;
     opacity: 0.8;
   }
 
   .group-link:hover {
     opacity: 1;
-    text-decoration: underline;
   }
 
   .roles-list {
     display: flex;
     flex-direction: column;
-    padding-left: 21px; /* Align with center of 42px logo */
+    padding-left: 19px;
   }
 
   .role-item {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     position: relative;
   }
 
@@ -395,134 +336,121 @@
     align-items: center;
     width: 2px;
     flex-shrink: 0;
-    position: relative;
   }
 
   .marker-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: var(--surface-2);
     border: 2px solid var(--bg-color);
     border-radius: 50%;
-    margin-top: 6px;
+    margin-top: 5px;
     z-index: 2;
-    transition: all 0.3s ease;
+    transition: background 0.2s;
   }
 
   .role-item:hover .marker-dot {
     background: var(--accent-1);
-    transform: scale(1.2);
-    box-shadow: 0 0 10px var(--accent-1);
   }
 
   .marker-line {
     position: absolute;
-    top: 16px;
-    bottom: -16px;
+    top: 13px;
+    bottom: -13px;
     width: 2px;
     background: var(--surface-2);
-    opacity: 0.5;
+    opacity: 0.4;
     z-index: 1;
   }
 
   .role-content {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    padding-bottom: 2rem;
+    gap: 0.35rem;
+    padding-bottom: 1.5rem;
     flex: 1;
   }
 
   .role-item:last-child .role-content {
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
   }
 
   .role-header {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.1rem;
   }
 
   .role-title {
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--text-primary);
     margin: 0;
-    transition: color 0.3s ease;
-  }
-
-  .role-item:hover .role-title {
-    color: var(--accent-1);
   }
 
   .role-period {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-secondary);
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   .role-description {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.6;
     color: var(--text-secondary);
-    margin: 0.25rem 0 0;
-    max-width: 650px;
+    margin: 0.15rem 0 0;
+    max-width: 600px;
   }
 
   .bullet-list {
-    margin: 0.5rem 0 0 0;
-    padding-left: 1.25rem;
+    margin: 0.35rem 0 0 0;
+    padding-left: 1.1rem;
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.3rem;
   }
 
   .bullet-point {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.6;
     color: var(--text-secondary);
     position: relative;
-    transition: color 0.2s ease;
   }
 
   .bullet-point::before {
     content: "•";
     position: absolute;
-    left: -1.25rem;
+    left: -1.1rem;
     color: var(--accent-1);
     font-weight: bold;
-    opacity: 0.7;
-  }
-
-  .item-row:hover .bullet-point,
-  .role-item:hover .bullet-point {
-    color: var(--text-primary);
+    opacity: 0.6;
   }
 
   @media (max-width: 640px) {
     .header-main-group {
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
+
     .logo-img {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
     }
+
     .group-logo-container {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
     }
+
     .roles-list {
-      padding-left: 18px;
+      padding-left: 16px;
     }
+
     .role-item {
       gap: 1rem;
-    }
-    .group-company-name {
-      font-size: 1.1rem;
     }
   }
 </style>

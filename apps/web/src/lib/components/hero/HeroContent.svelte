@@ -1,215 +1,114 @@
 <script lang="ts">
-  import { ArrowDown, Smartphone, Layers, Zap } from "lucide-svelte";
-  import { Motion } from "svelte-motion";
+  import { ArrowDown } from "lucide-svelte";
   import SocialLinks from "./SocialLinks.svelte";
-  import { heroView } from "$lib/stores/ui";
-
-  export let focusChat: () => void;
-  export let itemVariants: any;
-  export let containerVariants: any;
 </script>
 
-<Motion initial="hidden" animate="show" variants={containerVariants} let:motion>
-  <div class="content" use:motion>
-    <Motion variants={itemVariants} let:motion>
-      <div class="mobile-profile-hero" use:motion>
-        <div class="profile-frame">
-          <img src="/me.png" alt="Dagmawi" />
-        </div>
-      </div>
-    </Motion>
+<div class="content">
+  <h1 class="headline">
+    Modern products.<br />
+    <span class="accent">No bullshit.</span>
+  </h1>
 
-    <Motion variants={itemVariants} let:motion>
-      <div class="badge" use:motion>
-        <span class="pulse"></span>
-        Available for hire
-      </div>
-    </Motion>
+  <p class="intro">
+    I'm <strong>Dagmawi</strong>. I build mobile apps that people actually enjoy
+    using. Obsessed with the details that get ignored — 120fps animations,
+    rock-solid architecture, and making software feel as good as it looks.
+  </p>
 
-    <Motion variants={itemVariants} let:motion>
-      <h1 class="headline" use:motion>
-        Modern products. <br />
-        <span class="text-gradient">No bullshit.</span>
-      </h1>
-    </Motion>
-
-    <Motion variants={itemVariants} let:motion>
-      <p class="intro" use:motion>
-        I'm <strong class="name-highlight">Dagmawi</strong>. I build mobile apps
-        that people actually enjoy using. I'm obsessed with the details that
-        usually get ignored - the 120fps animations, rock-solid architecture,
-        and making sure software feels as good as it looks.
-      </p>
-    </Motion>
-
-    <Motion variants={itemVariants} let:motion>
-      <div class="specs" use:motion>
-        <div class="spec-item">
-          <Smartphone size={18} class="accent-icon" />
-          <span>React Native</span>
-        </div>
-        <div class="spec-item">
-          <Layers size={18} class="accent-icon" />
-          <span>Architecture</span>
-        </div>
-        <div class="spec-item">
-          <Zap size={18} class="accent-icon" />
-          <span>Performance</span>
-        </div>
-      </div>
-    </Motion>
-
-    <Motion variants={itemVariants} let:motion>
-      <div class="actions" use:motion>
-        <a href="#work" class="btn btn-primary">
-          View Work <ArrowDown size={18} />
-        </a>
-        <div class="btn-wrapper">
-          <button
-            on:click={focusChat}
-            class="btn btn-secondary"
-            class:active={$heroView === "chat"}
-          >
-            Send me a Message
-          </button>
-        </div>
-      </div>
-    </Motion>
-
-    <SocialLinks variants={itemVariants} />
+  <div class="specs">
+    <span class="spec">React Native</span>
+    <span class="spec-dot"></span>
+    <span class="spec">Architecture</span>
+    <span class="spec-dot"></span>
+    <span class="spec">Performance</span>
   </div>
-</Motion>
+
+  <div class="actions">
+    <a href="#work" class="btn-primary">
+      View Work <ArrowDown size={16} />
+    </a>
+    <a href="mailto:daggyohannes@gmail.com" class="btn-secondary">
+      Get in Touch
+    </a>
+  </div>
+
+  <SocialLinks />
+</div>
 
 <style>
-  /* ... existing styles ... */
-  .badge {
-    display: inline-flex;
+  .content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: var(--surface-2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    transition: all 0.3s ease;
-  }
-
-  .badge:hover {
-    background: var(--surface-1);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .pulse {
-    width: 8px;
-    height: 8px;
-    background: #4ade80;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
-    animation: pulse 2s infinite;
-  }
-
-  /* Mobile Profile Hero - Hidden by default */
-  .mobile-profile-hero {
-    display: none;
-    margin-bottom: 1.5rem;
-  }
-
-  .profile-frame {
-    width: 80px;
-    height: 80px;
-    border-radius: 24px; /* Squircle */
-    padding: 3px;
-    background: linear-gradient(135deg, var(--surface-2), var(--surface-1));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-  }
-
-  .profile-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px; /* Inner squircle */
-    filter: grayscale(0%);
-    transition: filter 0.3s ease;
-  }
-
-  /* Reveal on Mobile */
-  @media (max-width: 960px) {
-    .mobile-profile-hero {
-      display: flex;
-      justify-content: center;
-    }
+    text-align: center;
   }
 
   .headline {
-    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
     margin: 0 0 1.5rem 0;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
   }
 
-  .text-gradient {
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .accent {
+    color: var(--accent-1);
   }
 
   .intro {
-    font-size: 1.25rem;
-    line-height: 1.5;
+    font-size: 1.125rem;
+    line-height: 1.6;
     color: var(--text-secondary);
-    max-width: 540px;
-    margin-bottom: 2rem;
+    max-width: 520px;
+    margin: 0 0 2rem 0;
   }
 
-  .name-highlight {
+  .intro strong {
     color: var(--text-primary);
     font-weight: 600;
   }
 
   .specs {
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
     margin-bottom: 2.5rem;
   }
 
-  .spec-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-primary);
+  .spec {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
   }
 
-  :global(.accent-icon) {
-    color: var(--accent-2);
+  .spec-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    opacity: 0.4;
   }
 
   .actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
   }
 
-  .btn {
+  .btn-primary,
+  .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.875rem 1.75rem;
-    border-radius: 14px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
     font-weight: 600;
+    font-size: 0.9rem;
     text-decoration: none;
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border: none;
-    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
     font-family: inherit;
   }
 
@@ -218,84 +117,30 @@
     color: var(--bg-color);
   }
 
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px -10px rgba(var(--text-primary), 0.3);
-  }
-
-  /* The Wrapper Fix */
-  .btn-wrapper {
-    display: inline-block;
-    position: relative;
-    /* Ensure the wrapper respects flex layout of parent */
-  }
-
   .btn-secondary {
     background: var(--surface-1);
     color: var(--text-primary);
     border: 1px solid var(--surface-2);
-    position: relative;
-    overflow: visible;
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .btn-secondary::after {
-    content: "";
-    position: absolute;
-    inset: -20px;
-    z-index: -1;
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
   }
 
-  /* Trigger hover from the wrapper, affecting the child */
-  .btn-wrapper:hover .btn-secondary {
-    background: var(--accent-1);
-    color: white;
-    border-color: var(--accent-1);
-    box-shadow: 0 15px 40px rgba(var(--accent-1-rgb), 0.4);
-  }
-
-  .btn-secondary.active {
-    /* No persistent colors - only morph on hover */
-  }
-
-  /* Trigger active morph from wrapper hover */
-  .btn-wrapper:hover .btn-secondary.active {
-    background: var(--accent-1);
-    color: white;
-    border-color: var(--accent-1);
-    clip-path: polygon(0 0, 85% 0, 100% 50%, 85% 100%, 0 100%);
-    padding-right: 2.5rem;
-    transform: rotate(10deg) translateX(10px) translateY(5px);
-  }
-
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
-    }
-    70% {
-      box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
-    }
-  }
-
-  /* Mobile adjustment: Ensure badge centered on small screens */
-  @media (max-width: 960px) {
-    .badge {
-      margin-left: auto;
-      margin-right: auto;
+  @media (max-width: 640px) {
+    .headline {
+      font-size: 2.25rem;
     }
 
     .intro {
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 1rem;
     }
 
     .specs {
-      justify-content: center;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .actions {

@@ -5,10 +5,6 @@ description: "A lesson from a single-stringed instrument on building with soul."
 category: "Engineering"
 ---
 
-<script>
-  import { Motion } from 'svelte-motion';
-</script>
-
 # One String is Enough
 
 If you’ve ever walked through a street in Addis at night, you might have heard it. A raspy, haunting sound cutting through the city noise. It’s the Masenqo.
@@ -43,15 +39,12 @@ Constraints aren't limits; they're the source of the soul.
 
 Mulatu built Ethio-jazz on a five-note scale. That limitation forced him to find depth where others only saw shallow water. In my terminal, if I tell myself I _cannot_ use that massive framework today, I’m forced to actually look at the data structure. I’m forced to think about the user’s memory, their battery, their time.
 
-<Motion initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} client:visible>
-
-  <div style="padding: 2.5rem; border: 1px dashed var(--accent-2); border-radius: 16px; margin: 2.5rem 0; text-align: left; background: var(--surface-1); line-height: 1.6;">
-    <h4 style="margin-top: 0; color: var(--accent-2); font-size: 1.1rem;">The Engineering Resonator</h4>
+<div style="padding: 2.5rem; border: 1px dashed var(--surface-2); border-radius: 16px; margin: 2.5rem 0; text-align: left; background: var(--surface-1); line-height: 1.6;">
+    <h4 style="margin-top: 0; color: var(--accent-1); font-size: 1.1rem;">The Engineering Resonator</h4>
     <p style="font-size: 0.95rem; margin-bottom: 0; font-weight: 500;">
       "If the architecture doesn't have a soul on a single thread, a distributed system will only make it a louder mess."
     </p>
   </div>
-</Motion>
 
 ### Raw over Wrapped
 

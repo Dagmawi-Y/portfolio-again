@@ -4,7 +4,6 @@
   import StickyHeader from "$lib/components/StickyHeader.svelte";
   import Career from "$lib/components/Career.svelte";
   import OpenSource from "$lib/components/OpenSource.svelte";
-  import Interests from "$lib/components/Interests.svelte";
   import { siteConfig } from "$lib/config";
 
   let activeFilter = "All";
@@ -39,26 +38,13 @@
 <main>
   <Hero />
 
-  <section id="work" class="section" style="position: relative;">
+  <section id="work" class="section">
     <div class="container">
       <StickyHeader
         id="work"
         title="Projects"
         subtitle="Selected works and experiments"
       />
-
-      <!-- Simple pill filters -->
-      <!-- <div class="filters">
-        {#each categories as cat}
-          <button
-            class="filter-pill"
-            class:active={activeFilter === cat}
-            on:click={() => (activeFilter = cat)}
-          >
-            {cat}
-          </button>
-        {/each}
-      </div> -->
 
       <div class="projects-container">
         {#each projectTypes as type}
@@ -80,10 +66,6 @@
   <Career />
 
   <OpenSource />
-
-  <div id="lab">
-    <Interests />
-  </div>
 </main>
 
 <style>
@@ -96,74 +78,19 @@
     margin: 0 auto;
   }
 
-  .section-header {
-    margin-bottom: 1.5rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin: 0 0 0.5rem 0;
-    letter-spacing: -0.04em;
-    color: var(--text-primary);
-  }
-
-  .section-subtitle {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin: 0;
-    opacity: 0.8;
-  }
-
-  /* Simple pill filters */
-  .filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .filter-pill {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-family: inherit;
-    border: 1px solid var(--surface-2);
-    border-radius: 8px;
-    background: var(--surface-1);
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .filter-pill:hover {
-    background: var(--surface-2);
-    color: var(--text-primary);
-  }
-
-  .filter-pill.active {
-    background: var(--text-primary);
-    color: var(--bg-color);
-    border-color: var(--text-primary);
-  }
-
-  /* Projects structure */
   .projects-container {
     display: flex;
     flex-direction: column;
-    gap: 3rem; /* Reduced from 6rem */
+    gap: 3rem;
     position: relative;
     padding-left: 2rem;
   }
 
-  /* Projects Spine */
   .projects-container::after {
     content: "";
     position: absolute;
     left: 0;
-    top: 0.5rem; /* Aligns with the center of the first marker */
+    top: 0.5rem;
     bottom: 0;
     width: 1px;
     background: linear-gradient(
@@ -173,7 +100,7 @@
       var(--surface-2) 80%,
       transparent 100%
     );
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .type-group {
@@ -184,33 +111,29 @@
   }
 
   .type-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: var(--accent-1);
     margin: 0;
     position: relative;
-    padding-bottom: 0;
   }
 
-  /* Type Junction Dot */
   .type-label::before {
     content: "";
     position: absolute;
     left: -2rem;
     top: 50%;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: var(--bg-color);
     border: 2px solid var(--accent-1);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    transition: all 0.3s ease;
   }
 
-  /* Type Branch Line */
   .type-label::after {
     content: "";
     position: absolute;
@@ -223,21 +146,14 @@
     z-index: 4;
   }
 
-  .type-group:hover .type-label::before {
-    background: var(--accent-1);
-    box-shadow: 0 0 15px var(--accent-1);
-    transform: translate(-50%, -50%) scale(1.2);
-  }
-
   .projects-list {
     display: flex;
     flex-direction: column;
-    gap: 0rem;
+    gap: 0;
     padding-left: 2rem;
     position: relative;
   }
 
-  /* List vertical guide */
   .projects-list::before {
     content: "";
     position: absolute;
@@ -249,21 +165,13 @@
     opacity: 0.3;
   }
 
-  .type-group:hover .projects-list::before {
-    background: var(--accent-1);
-    opacity: 0.6;
-    box-shadow: 0 0 10px var(--accent-1);
-  }
-
   .project-wrapper {
-    animation: fadeSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: fadeSlideIn 0.4s ease forwards;
   }
 
   @keyframes fadeSlideIn {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
-    }
     to {
       opacity: 1;
       transform: translateY(0);
@@ -273,10 +181,6 @@
   @media (max-width: 640px) {
     .section {
       padding: 4rem 1.5rem;
-    }
-
-    .section-title {
-      font-size: 2rem;
     }
 
     .projects-container {

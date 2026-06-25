@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Motion } from "svelte-motion";
   export let data;
 
   const formatDate = (dateString: string) => {
@@ -17,50 +16,24 @@
 
 <div class="blog-container">
   <header class="blog-header">
-    <Motion
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1, duration: 0.5 }}
-      let:motion
-    >
-      <div class="header-content" use:motion>
-        <h1 class="title">Brain Dump</h1>
-        <p class="subtitle">Occasional notes on code and life.</p>
-      </div>
-    </Motion>
+    <h1 class="title">Brain Dump</h1>
+    <p class="subtitle">Occasional notes on code and life.</p>
   </header>
 
   <div class="posts-list">
     {#each data.posts as post, i}
-      <Motion
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 + i * 0.05, duration: 0.4 }}
-        let:motion
-      >
-        <a href="/blog/{post.slug}" class="post-item" use:motion>
-          <div class="post-meta">
-            <time class="post-date">{formatDate(post.date)}</time>
-          </div>
-          <div class="post-body">
-            <h2 class="post-title">{post.title}</h2>
-            <p class="post-desc">{post.description}</p>
-          </div>
-          <div class="post-arrow">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7" /></svg
-            >
-          </div>
-        </a>
-      </Motion>
+      <a href="/blog/{post.slug}" class="post-item">
+        <div class="post-meta">
+          <time class="post-date">{formatDate(post.date)}</time>
+        </div>
+        <div class="post-body">
+          <h2 class="post-title">{post.title}</h2>
+          <p class="post-desc">{post.description}</p>
+        </div>
+        <div class="post-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7" /></svg>
+        </div>
+      </a>
     {/each}
   </div>
 </div>
@@ -73,46 +46,24 @@
   }
 
   .blog-header {
-    margin-bottom: 4rem;
-  }
-
-  .back-home {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
-    transition: all 0.2s;
-  }
-
-  .back-home:hover {
-    color: var(--text-primary);
-    transform: translateX(-4px);
+    margin-bottom: 3rem;
   }
 
   .title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.4rem 0;
     letter-spacing: -0.03em;
     line-height: 1.1;
     color: var(--text-primary);
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    max-width: 400px;
-    line-height: 1.5;
     margin: 0;
   }
 
-  /* Post List */
   .posts-list {
     display: flex;
     flex-direction: column;
@@ -120,48 +71,46 @@
 
   .post-item {
     display: grid;
-    grid-template-columns: 100px 1fr auto;
-    gap: 2rem;
-    padding: 2rem 0;
+    grid-template-columns: 90px 1fr auto;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
     text-decoration: none;
     border-bottom: 1px solid var(--surface-2);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: padding-left 0.2s;
     position: relative;
-    border-color: rgba(128, 128, 128, 0.1);
   }
 
   .post-item:hover {
-    padding-left: 0.75rem;
+    padding-left: 0.5rem;
   }
 
   .post-meta {
-    padding-top: 0.25rem;
+    padding-top: 0.2rem;
   }
 
   .post-date {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   .post-title {
-    font-size: 1.35rem;
-    font-weight: 750;
-    margin: 0 0 0.35rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
     color: var(--text-primary);
     line-height: 1.25;
-    letter-spacing: -0.01em;
   }
 
   .post-desc {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.5;
     margin: 0;
-    max-width: 540px;
+    max-width: 520px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -171,14 +120,14 @@
 
   .post-arrow {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-8px);
     color: var(--text-primary);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.2s, transform 0.2s;
     align-self: center;
   }
 
   .post-item:hover .post-arrow {
-    opacity: 0.8;
+    opacity: 0.6;
     transform: translateX(0);
   }
 
@@ -188,13 +137,13 @@
     }
 
     .title {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
     .post-item {
       grid-template-columns: 1fr;
-      gap: 0.5rem;
-      padding: 1.5rem 0;
+      gap: 0.4rem;
+      padding: 1.25rem 0;
     }
 
     .post-item:hover {

@@ -8,6 +8,12 @@
     subtitle = "",
     compact = false,
     onstuck = undefined,
+  }: {
+    id?: string;
+    title?: string;
+    subtitle?: string;
+    compact?: boolean;
+    onstuck?: (detail: StickyDetail) => void;
   } = $props();
 
   let isStuck = $state(false);
@@ -21,7 +27,6 @@
   }
 </script>
 
-<!-- Sentinel: Stays at the top of the scroll container to detect the boundary -->
 <div
   class="sticky-sentinel"
   use:stickyObserver={{ sectionId: id, onStuck: handleStuck }}
@@ -30,30 +35,21 @@
 <div class="sticky-header" class:is-stuck={isStuck} class:compact>
   <div class="content">
     <div class="title-group">
-      <!-- Normal Flow Title -->
       <div class="normal-title">
-        <slot name="title">
-          <h2 class="section-title">{title}</h2>
-        </slot>
+        <h2 class="section-title">{title}</h2>
         {#if subtitle}
           <p class="section-subtitle">{subtitle}</p>
-        {:else}
-          <slot name="subtitle" />
         {/if}
       </div>
 
-      <!-- Stuck Marginalia Title -->
       <div class="stuck-title">
         <h2 class="section-title stuck-version">{title}</h2>
       </div>
     </div>
-    <slot name="extra" />
   </div>
 </div>
 
 <style>
-  /* Sensor: A transparent bar that spans the height of the section 
-     to maintain 'Active' state while the user is inside this section. */
   .sticky-sentinel {
     position: absolute;
     top: 0;
@@ -70,7 +66,6 @@
     z-index: 100;
     width: 100%;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .content {
@@ -83,14 +78,13 @@
   .title-group {
     display: flex;
     flex-direction: column;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
     position: relative;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .normal-title {
     opacity: 1;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.3s ease;
   }
 
   .is-stuck .normal-title {
@@ -101,96 +95,80 @@
   .stuck-title {
     position: absolute;
     left: -16rem;
-    top: 3rem; /* Increased top spacing as requested */
+    top: 3rem;
     width: 13rem;
     text-align: right;
-    padding-bottom: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: 0s;
+    transition: opacity 0.4s ease;
   }
 
   .is-stuck .stuck-title {
     opacity: 1;
     pointer-events: auto;
-    transition-delay: 0.2s; /* Delay the fade-in for a premium feel */
+    transition-delay: 0.15s;
   }
 
-  /* Compact (Interests) Normal Style */
   .compact .title-group {
-    padding-bottom: 1.25rem;
+    padding-bottom: 1rem;
   }
 
-  /* Normal Style matches original Projects/Career */
   .section-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
     font-weight: 800;
     margin: 0;
     letter-spacing: -0.04em;
     color: var(--text-primary);
     line-height: 1.2;
-    transition: color 0.4s ease;
   }
 
-  /* Normal Style matches original Interests label */
   .compact .section-title {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 0.15em;
     color: var(--text-secondary);
   }
 
-  /* Stuck Specific Text Style */
-  .stuck-text,
   .stuck-version {
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent-1);
   }
 
   .compact .stuck-version {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-primary);
-    opacity: 0.8;
-    letter-spacing: 2px;
+    opacity: 0.7;
+    letter-spacing: 0.15em;
   }
 
   .section-subtitle {
     color: var(--text-secondary);
-    font-size: 1rem;
-    margin: 0.5rem 0 0 0;
-    opacity: 0.8;
+    font-size: 0.9rem;
+    margin: 0.4rem 0 0 0;
+    opacity: 0.7;
   }
 
-  /* Tablet/Mobile: Disable sticky - headers scroll normally */
   @media (max-width: 1400px) {
     .sticky-header {
       position: relative;
     }
 
-    /* Reset all stuck styles on mobile */
     .sticky-header.is-stuck {
       background: none;
-      padding: 0;
-      margin-bottom: 0;
-    }
-
-    .sticky-header.is-stuck::before {
-      display: none;
     }
 
     .is-stuck .title-group {
       position: static;
-      padding-bottom: 2rem;
+      padding-bottom: 1.5rem;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.2rem;
     }
 
     .is-stuck .section-title {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
       font-weight: 800;
       letter-spacing: -0.04em;
       text-transform: none;
@@ -198,15 +176,11 @@
       opacity: 1;
     }
 
-    .is-stuck .section-title::after {
-      display: none;
-    }
-
     .is-stuck.compact .section-title {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 0.15em;
       color: var(--text-secondary);
     }
 
@@ -222,19 +196,19 @@
 
     .is-stuck .section-subtitle {
       display: block;
-      opacity: 0.8;
+      opacity: 0.7;
     }
   }
 
   @media (max-width: 640px) {
     .section-title,
     .is-stuck .section-title {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
     .compact .section-title,
     .is-stuck.compact .section-title {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
     }
   }
 </style>
