@@ -14,43 +14,47 @@
     <section class="section">
       <h2 class="section-title">Building</h2>
       <p>
-        I'm founding and leading development at <strong>Edopia</strong> — we're
-        building the future of learning for Africa. Every child deserves
-        access to a world-class education, regardless of where they live. We
-        combine AI, personalized learning, and locally relevant content to
-        create engaging experiences that adapt to each student.
-      </p>
-      <p>
-        Not just another education platform — an ecosystem that empowers
-        students to learn better, teachers to teach smarter, and parents to
-        participate in their children's journey.
+        I am building <strong>Edopia</strong>, an adaptive learning platform for
+        students in Africa. We use on-device AI to personalize lessons, matching
+        the curriculum and pace of individual students. This helps teachers
+        track progress and lets parents support their children's schoolwork.
       </p>
     </section>
 
     <section class="section">
       <h2 class="section-title">Learning</h2>
       <p>
-        Deep-diving into WebGPU and WASM for running LLMs purely in the browser.
-        Also reading about distributed systems — specifically how CRDTs can
-        replace traditional databases for collaborative apps.
+        I am studying WebGPU and WebAssembly to run language models in the
+        browser. I am also researching distributed systems, focusing on how
+        conflict-free replicated data types (CRDTs) can replace databases in
+        collaborative applications.
       </p>
     </section>
 
     <section class="section">
       <h2 class="section-title">Thinking about</h2>
       <p>
-        How to make African tech ecosystems self-sustaining. Not just building
-        products, but building the people and communities that build the
-        products. Techtonic Tribe was the first step — Edopia is the next.
+        I want to help build sustainable tech communities in Addis Ababa. With
+        Techtonic Tribe, I started a university group for peer learning. Now
+        with Edopia, I want to create educational tools that foster technical
+        curiosity from an early age.
       </p>
     </section>
 
     <section class="section">
       <h2 class="section-title">Could use help with</h2>
       <ul class="list">
-        <li>Anyone working on local-first / CRDT infrastructure — I'd love to compare notes</li>
-        <li>Educators or parents interested in AI-powered learning for kids</li>
-        <li>Engineers in Addis Ababa who want to get involved in open-source</li>
+        <li>
+          Engineers working on local-first or CRDT infrastructure to compare
+          notes
+        </li>
+        <li>
+          Educators and parents interested in testing on-device learning tools
+        </li>
+        <li>
+          Software developers in Addis Ababa who want to contribute to
+          open-source projects
+        </li>
       </ul>
     </section>
   </article>

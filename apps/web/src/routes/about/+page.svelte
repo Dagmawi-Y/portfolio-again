@@ -11,40 +11,38 @@
 
   <article class="content">
     <p>
-      I'm Dagmawi — a software engineer based in Addis Ababa, Ethiopia. I build
-      mobile apps that people actually enjoy using.
+      I am Dagmawi, a software engineer in Addis Ababa, Ethiopia. I build mobile
+      applications that people enjoy using.
     </p>
 
     <p>
-      I started writing code because I was impatient. I wanted things to exist
-      that didn't, and I didn't want to wait for someone else to build them.
-      That impatience turned into obsession — with performance, with details,
-      with making software feel as good as it looks.
+      I started writing code to build tools that did not exist. Today, I focus
+      on performance, precise design, and responsiveness.
     </p>
 
     <p>
-      I've worked on products reaching millions of users — streaming apps,
-      banking super-apps, remittance platforms moving $1M+ daily. I founded
-      <strong>Edopia</strong>, an AI-driven learning platform for Africa, and
-      <strong>Techtonic Tribe</strong>, a university tech community that grew
-      from a club into a movement.
+      I have built banking super-apps, streaming systems, and remittance
+      platforms moving more than a million dollars daily. I also founded
+      <strong>Edopia</strong>, an adaptive learning platform, and
+      <strong>Techtonic Tribe</strong>, a university tech community.
     </p>
 
     <p>
-      I care about local-first architecture, in-browser AI, and building tools
-      that respect people's privacy and attention. I believe the best software is
-      built by people who use it themselves.
+      I design local-first systems and on-device AI models that protect user
+      privacy. In my view, engineers build better software when they use their
+      own products daily.
     </p>
 
     <p>
-      When I'm not coding, I'm reading about systems design, listening to Hans
-      Zimmer, or giving talks about simplicity in engineering.
+      Outside of coding, I study systems design, listen to Hans Zimmer, and
+      speak about simple software architecture.
     </p>
 
     <div class="details">
       <div class="detail-row">
         <span class="detail-label">Focus</span>
-        <span class="detail-value">React Native, Architecture, Performance</span>
+        <span class="detail-value">React Native, Architecture, Performance</span
+        >
       </div>
       <div class="detail-row">
         <span class="detail-label">Based in</span>
@@ -56,7 +54,9 @@
       </div>
       <div class="detail-row">
         <span class="detail-label">Available for</span>
-        <span class="detail-value">Collaboration, advisory, interesting problems</span>
+        <span class="detail-value"
+          >Collaboration, advisory, interesting problems</span
+        >
       </div>
     </div>
   </article>
